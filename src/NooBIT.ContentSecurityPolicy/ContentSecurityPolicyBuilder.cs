@@ -112,7 +112,19 @@ namespace NooBIT.ContentSecurityPolicy
 
         public string Build()
         {
-            return string.Join(" ", _directives);
+            var directives = _directives.GroupBy(x => x.Name);
+
+            var sb = new StringBuilder();
+            foreach (var directive in directives)
+            {
+                var values = directive.SelectMany(x => x.Value).ToList();
+                if (values.Count <= 0)
+                    sb.AppendFormat("{0}; ", directive.Key);
+                else
+                    sb.AppendFormat("{0} {1}; ", directive.Key, string.Join(" ", values));
+            }
+
+            return sb.ToString().TrimEnd();
         }
     }
 }
