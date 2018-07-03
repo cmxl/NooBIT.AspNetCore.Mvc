@@ -8,7 +8,7 @@ namespace NooBIT.Web
     {
         public static IApplicationBuilder UseRecommendedSecurityHeaders(this IApplicationBuilder app)
         {
-            return app.UseMiddleware<CustomHeaderMiddleware>(new CustomHeaderPolicyBuilder().AddRecommendedSecurityHeaders());
+            return app.UseCustomHeaders(new CustomHeaderPolicyBuilder().AddRecommendedSecurityHeaders());
         }
 
         public static IApplicationBuilder UseCustomHeaders(this IApplicationBuilder app, CustomHeaderPolicyBuilder builder)
