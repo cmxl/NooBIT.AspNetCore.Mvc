@@ -9,10 +9,6 @@
         public static Source StrictDynamic => new Source("'strict-dynamic'");
         public static Source UnsafeHashedAttributes => new Source("'unsafe-hashed-attributes'");
         
-        internal Source()
-        {
-        }
-
         internal Source(string value)
         {
             Value = value;

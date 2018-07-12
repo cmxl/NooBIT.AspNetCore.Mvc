@@ -1,10 +1,47 @@
-﻿using NooBIT.Web.Http.Headers;
+﻿using NooBIT.Web.Http;
+using NooBIT.Web.Http.Headers;
 
 namespace NooBIT.Web.Security.ReferrerPolicy
 {
-    public class ReferrerPolicyBuilder
+    public class ReferrerPolicyBuilder : IHeaderBuilder
     {
         private ReferrerPolicyType _type = ReferrerPolicyType.StrictOriginWhenCrossOrigin;
+
+        public Header Build()
+        {
+            var header = Header.ReferrerPolicy;
+
+            switch (_type)
+            {
+                case ReferrerPolicyType.NoReferrer:
+                    header.Value = ReferrerPolicyHeader.NoReferrer;
+                    break;
+                case ReferrerPolicyType.NoReferrerWhenDowngrade:
+                    header.Value = ReferrerPolicyHeader.NoReferrerWhenDowngrade;
+                    break;
+                case ReferrerPolicyType.Origin:
+                    header.Value = ReferrerPolicyHeader.Origin;
+                    break;
+                case ReferrerPolicyType.OriginWhenCrossOrigin:
+                    header.Value = ReferrerPolicyHeader.OriginWhenCrossOrigin;
+                    break;
+                case ReferrerPolicyType.SameOrigin:
+                    header.Value = ReferrerPolicyHeader.SameOrigin;
+                    break;
+                case ReferrerPolicyType.StrictOrigin:
+                    header.Value = ReferrerPolicyHeader.StrictOrigin;
+                    break;
+                case ReferrerPolicyType.UnsafeUrl:
+                    header.Value = ReferrerPolicyHeader.UnsafeUrl;
+                    break;
+                case ReferrerPolicyType.StrictOriginWhenCrossOrigin:
+                default:
+                    header.Value = ReferrerPolicyHeader.StrictOriginWhenCrossOrigin;
+                    break;
+            }
+
+            return header;
+        }
 
         public ReferrerPolicyBuilder UseNoReferrer()
         {
@@ -52,30 +89,6 @@ namespace NooBIT.Web.Security.ReferrerPolicy
         {
             _type = ReferrerPolicyType.UnsafeUrl;
             return this;
-        }
-
-        public string Build()
-        {
-            switch (_type)
-            {
-                case ReferrerPolicyType.NoReferrer:
-                    return ReferrerPolicyHeader.NoReferrer;
-                case ReferrerPolicyType.NoReferrerWhenDowngrade:
-                    return ReferrerPolicyHeader.NoReferrerWhenDowngrade;
-                case ReferrerPolicyType.Origin:
-                    return ReferrerPolicyHeader.Origin;
-                case ReferrerPolicyType.OriginWhenCrossOrigin:
-                    return ReferrerPolicyHeader.OriginWhenCrossOrigin;
-                case ReferrerPolicyType.SameOrigin:
-                    return ReferrerPolicyHeader.SameOrigin;
-                case ReferrerPolicyType.StrictOrigin:
-                    return ReferrerPolicyHeader.StrictOrigin;
-                case ReferrerPolicyType.UnsafeUrl:
-                    return ReferrerPolicyHeader.UnsafeUrl;
-                case ReferrerPolicyType.StrictOriginWhenCrossOrigin:
-                default:
-                    return ReferrerPolicyHeader.StrictOriginWhenCrossOrigin;
-            }
         }
 
         private enum ReferrerPolicyType

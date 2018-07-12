@@ -1,8 +1,9 @@
-﻿using NooBIT.Web.Http.Headers;
+﻿using NooBIT.Web.Http;
+using NooBIT.Web.Http.Headers;
 
 namespace NooBIT.Web.Security.XssProtection
 {
-    public class XssProtectionBuilder
+    public class XssProtectionBuilder : IHeaderBuilder
     {
         private XssProtectionType _type = XssProtectionType.Block;
 
@@ -24,18 +25,24 @@ namespace NooBIT.Web.Security.XssProtection
             return this;
         }
 
-        public string Build()
+        public Header Build()
         {
+            var header = Header.XssProtection;
             switch (_type)
             {
                 case XssProtectionType.Disable:
-                    return XssProtectionHeader.Disable;
+                    header.Value = XssProtectionHeader.Disable;
+                    break;
                 case XssProtectionType.Enable:
-                    return XssProtectionHeader.Enable;
+                    header.Value =XssProtectionHeader.Enable;
+                    break;
                 case XssProtectionType.Block:
                 default:
-                    return XssProtectionHeader.Block;
+                    header.Value = XssProtectionHeader.Block;
+                    break;
             }
+
+            return header;
         }
 
         private enum XssProtectionType

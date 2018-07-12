@@ -1,13 +1,36 @@
 ﻿using System;
+using NooBIT.Web.Http;
 using NooBIT.Web.Http.Headers;
 
 namespace NooBIT.Web.Security.FrameOptions
 {
-    public class FrameOptionsBuilder
+    public class FrameOptionsBuilder : IHeaderBuilder
     {
         private string _allowFromUrl;
 
         private FrameOptionsType _type = FrameOptionsType.SameOrigin;
+
+
+        public Header Build()
+        {
+            var header = Header.FrameOptions;
+
+            switch (_type)
+            {
+                case FrameOptionsType.Deny:
+                    header.Value = FrameOptionsHeader.Deny;
+                    break;
+                case FrameOptionsType.AllowFrom:
+                    header.Value = FrameOptionsHeader.AllowFrom + " " + _allowFromUrl;
+                    break;
+                case FrameOptionsType.SameOrigin:
+                default:
+                    header.Value = FrameOptionsHeader.SameOrigin;
+                    break;
+            }
+
+            return header;
+        }
 
         public FrameOptionsBuilder UseDeny()
         {
@@ -29,21 +52,6 @@ namespace NooBIT.Web.Security.FrameOptions
             _type = FrameOptionsType.AllowFrom;
             _allowFromUrl = url;
             return this;
-        }
-
-
-        public string Build()
-        {
-            switch (_type)
-            {
-                case FrameOptionsType.Deny:
-                    return FrameOptionsHeader.Deny;
-                case FrameOptionsType.AllowFrom:
-                    return FrameOptionsHeader.AllowFrom + " " + _allowFromUrl;
-                case FrameOptionsType.SameOrigin:
-                default:
-                    return FrameOptionsHeader.SameOrigin;
-            }
         }
 
         private enum FrameOptionsType

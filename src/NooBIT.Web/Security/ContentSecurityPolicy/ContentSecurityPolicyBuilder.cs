@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using NooBIT.Web.Http;
 using NooBIT.Web.Security.ContentSecurityPolicy.Directives;
+using NooBIT.Web.Security.ContentSecurityPolicy.Sources;
 
 namespace NooBIT.Web.Security.ContentSecurityPolicy
 {
-    public class ContentSecurityPolicyBuilder
+    public class ContentSecurityPolicyBuilder : IHeaderBuilder
     {
         private readonly List<Directive> _directives = new List<Directive>();
 
@@ -105,14 +107,23 @@ namespace NooBIT.Web.Security.ContentSecurityPolicy
             return AddDirective(new WorkerSource(), directiveAction);
         }
 
-        private ContentSecurityPolicyBuilder AddDirective<T>(T directive, Action<T> directiveAction) where T : Directive
+        public ContentSecurityPolicyBuilder AddDirective<T>(T directive, Action<T> directiveAction) where T : Directive
         {
             directiveAction?.Invoke(directive);
             _directives.Add(directive);
             return this;
         }
 
-        public string Build()
+        public ContentSecurityPolicyBuilder Default()
+        {
+            return AddDefaultSource(x => x.AddSource(Source.Self))
+                .AddBaseUri(x => x.AddDataSource(string.Empty))
+                .AddScriptSource(x => x.AddSource(Source.Self))
+                .AddStyleSource(x => x.AddSource(Source.Self))
+                .AddFontSource(x => x.AddSource(Source.Self));
+        }
+
+        public Header Build()
         {
             var directives = _directives.GroupBy(x => x.Name);
 
@@ -126,7 +137,9 @@ namespace NooBIT.Web.Security.ContentSecurityPolicy
                     sb.AppendFormat("{0} {1}; ", directive.Key, string.Join(" ", values));
             }
 
-            return sb.ToString().TrimEnd();
+            var header = Header.ContentSecurityPolicy;
+            header.Value = sb.ToString().TrimEnd();
+            return header;
         }
     }
 }

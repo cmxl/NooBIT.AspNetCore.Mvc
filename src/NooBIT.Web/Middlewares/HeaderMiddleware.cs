@@ -1,15 +1,15 @@
 ﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
-using NooBIT.Web.Security;
+using NooBIT.Web.Http;
 
 namespace NooBIT.Web.Middlewares
 {
-    public class CustomHeaderMiddleware
+    public class HeaderMiddleware
     {
         private readonly RequestDelegate _next;
         private readonly HeaderPolicy _policy;
 
-        public CustomHeaderMiddleware(RequestDelegate next, HeaderPolicy policy)
+        public HeaderMiddleware(RequestDelegate next, HeaderPolicy policy)
         {
             _next = next;
             _policy = policy;
@@ -20,10 +20,10 @@ namespace NooBIT.Web.Middlewares
             var headers = context.Response.Headers;
 
             foreach (var headerValuePair in _policy.SetHeaders)
-                headers[headerValuePair.Key.Name] = headerValuePair.Value;
+                headers[headerValuePair.Value.Name] = headerValuePair.Value.Value;
 
             foreach (var header in _policy.RemoveHeaders)
-                headers.Remove(header.Name);
+                headers.Remove(header);
 
             await _next(context);
         }

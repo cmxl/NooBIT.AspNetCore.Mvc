@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Text;
+using NooBIT.Web.Http;
 
 namespace NooBIT.Web.Security.StrictTransportSecurity
 {
-    public class StrictTransportSecurityBuilder
+    public class StrictTransportSecurityBuilder : IHeaderBuilder
     {
         private const string MaxAgeDirectiveFormat = "max-age={0}";
         private const string IncludeSubDomainsDirective = "; includeSubDomains";
@@ -32,7 +33,7 @@ namespace NooBIT.Web.Security.StrictTransportSecurity
             return this;
         }
 
-        public string Build()
+        public Header Build()
         {
             if(_maxAge < MinimumPreloadMaxAge && _preload)
                 throw new InvalidOperationException($"In order to confirm HSTS preload list subscription expiry must be at least eighteen weeks ({MinimumPreloadMaxAge} seconds).");
@@ -49,7 +50,9 @@ namespace NooBIT.Web.Security.StrictTransportSecurity
             if (_preload)
                 sb.Append(PreloadDirective);
 
-            return sb.ToString();
+            var header = Header.StrictTransportSecurity;
+            header.Value = sb.ToString();
+            return header;
         }
     }
 }
