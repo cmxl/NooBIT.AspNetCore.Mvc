@@ -1,0 +1,28 @@
+﻿@{
+	var viewData = new Dictionary<string, IEnumerable<string>>
+	{
+		{"Headers", Context.Response.Headers.OrderBy(x => x.Key).Select(x => x.ToString())},
+		{"Features", Context.Features.OrderBy(x => x.Key.ToString()).Select(x => x.ToString())},
+		{"Items", Context.Items.OrderBy(x => x.Key.ToString()).Select(x => x.ToString())}
+	};
+}
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title>NooBIT.Web Sample</title>
+</head>
+<body>
+<h1>@ViewData["Title"]</h1>
+@foreach (var kv in viewData)
+{
+	<h2>@kv.Key</h2>
+	<ul>
+		@foreach (var item in kv.Value)
+		{
+			<li>@item</li>
+		}
+	</ul>
+}
+</body>
+</html>
