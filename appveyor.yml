@@ -56,10 +56,7 @@ after_build:
 test:
   assemblies:
     only:
-      - tests\NooBIT.AspNetCore.Mvc.Tests\bin\Release\NooBIT.AspNetCore.Mvc.Tests.dll
-
-artifacts:
-  - path: '**.nupkg'
+      - tests\NooBIT.AspNetCore.Mvc.Tests\bin\Release\**NooBIT.AspNetCore.Mvc.Tests.dll
 
 deploy:
   - provider: NuGet
@@ -67,4 +64,4 @@ deploy:
     api_key:
       secure: QFivkZaNTwhBMw4M4ERmtvPs49spWkN+dyAoYjRTHTMUSprfDmYdOzcb7XPECGI4
     skip_symbols: false
-    artifact: NooBIT.AspNetCore.Mvc.{version}.nupkg
+    artifact: '**\NooBIT.AspNetCore.Mvc.{version}.nupkg'
