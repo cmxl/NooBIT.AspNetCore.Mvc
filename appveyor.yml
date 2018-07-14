@@ -60,7 +60,7 @@ test:
 
 deploy:
   - provider: NuGet
-    server: https://api.nuget.org/v3/index.json
+    server: https://www.nuget.org/api/v2/package
     api_key:
       secure: QFivkZaNTwhBMw4M4ERmtvPs49spWkN+dyAoYjRTHTMUSprfDmYdOzcb7XPECGI4
     skip_symbols: false
