@@ -5,8 +5,6 @@ environment:
   sonar_organization: "noobit"
   sonar_token:
     secure: iWa2RuCudhm1QFn1k/Vu/pSi6wnMNuLmcZnXCP3sOMqKRB779uylQN9b1NQpcmRA
-  nuget_token:
-    secure: QFivkZaNTwhBMw4M4ERmtvPs49spWkN+dyAoYjRTHTMUSprfDmYdOzcb7XPECGI4
 
 branches:
   only:
@@ -37,7 +35,6 @@ init:
   - cmd: echo %sonar_project%
   - cmd: echo %sonar_organization%
   - cmd: echo %sonar_token%
-  - cmd: echo %nuget_token%
   - cmd: echo {version}
 
 install:
@@ -62,12 +59,12 @@ test:
       - tests\NooBIT.AspNetCore.Mvc.Tests\bin\Release\NooBIT.AspNetCore.Mvc.Tests.dll
 
 artifacts:
-  - path: '**\*.nupkg'
+  - path: '**.nupkg'
 
 deploy:
   - provider: NuGet
     server: https://api.nuget.org/v3/index.json
     api_key:
-      secure: "%nuget_token%"
+      secure: QFivkZaNTwhBMw4M4ERmtvPs49spWkN+dyAoYjRTHTMUSprfDmYdOzcb7XPECGI4
     skip_symbols: false
     artifact: NooBIT.AspNetCore.Mvc.{version}.nupkg
