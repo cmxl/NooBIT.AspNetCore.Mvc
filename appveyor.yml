@@ -35,7 +35,7 @@ init:
   - cmd: echo %sonar_project%
   - cmd: echo %sonar_organization%
   - cmd: echo %sonar_token%
-  - cmd: echo {version}
+  - cmd: echo %APPVEYOR_BUILD_VERSION%
 
 install:
   - cmd: dotnet tool install --global dotnet-sonarscanner
@@ -64,4 +64,4 @@ deploy:
     api_key:
       secure: QFivkZaNTwhBMw4M4ERmtvPs49spWkN+dyAoYjRTHTMUSprfDmYdOzcb7XPECGI4
     skip_symbols: false
-    artifact: '**\NooBIT.AspNetCore.Mvc.{version}.nupkg'
+    artifact: '**NooBIT.AspNetCore.Mvc.%APPVEYOR_BUILD_VERSION%.nupkg'
