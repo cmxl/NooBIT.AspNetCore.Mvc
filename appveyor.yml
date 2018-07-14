@@ -26,11 +26,11 @@ configuration: Release
 dotnet_csproj:
   patch: true
   file: '**\*.csproj'
-  version: {version}
-  package_version: {version}
-  assembly_version: {version}
-  file_version: {version}
-  informational_version: {version}
+  version: "{version}"
+  package_version: "{version}"
+  assembly_version: "{version}"
+  file_version: "{version}"
+  informational_version: "{version}"
 
 matrix:
   fast_finish: true
