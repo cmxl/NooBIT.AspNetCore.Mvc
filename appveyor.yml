@@ -65,3 +65,24 @@ deploy:
       secure: QFivkZaNTwhBMw4M4ERmtvPs49spWkN+dyAoYjRTHTMUSprfDmYdOzcb7XPECGI4
     skip_symbols: false
     artifact: NooBIT.AspNetCore.Mvc.%APPVEYOR_BUILD_VERSION%.nupkg
+
+  - provider: NuGet
+    server: https://www.nuget.org/api/v2/package
+    api_key:
+      secure: QFivkZaNTwhBMw4M4ERmtvPs49spWkN+dyAoYjRTHTMUSprfDmYdOzcb7XPECGI4
+    skip_symbols: false
+    artifact: NooBIT.AspNetCore.Mvc.SimpleInjector.%APPVEYOR_BUILD_VERSION%.nupkg
+
+  - provider: NuGet
+    server: https://www.nuget.org/api/v2/package
+    api_key:
+      secure: QFivkZaNTwhBMw4M4ERmtvPs49spWkN+dyAoYjRTHTMUSprfDmYdOzcb7XPECGI4
+    skip_symbols: false
+    artifact: NooBIT.AspNetCore.Mvc.Optimizations.%APPVEYOR_BUILD_VERSION%.nupkg
+
+  - provider: NuGet
+    server: https://www.nuget.org/api/v2/package
+    api_key:
+      secure: QFivkZaNTwhBMw4M4ERmtvPs49spWkN+dyAoYjRTHTMUSprfDmYdOzcb7XPECGI4
+    skip_symbols: false
+    artifact: NooBIT.AspNetCore.Mvc.AutoMapper.%APPVEYOR_BUILD_VERSION%.nupkg
