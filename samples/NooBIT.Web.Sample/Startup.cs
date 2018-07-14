@@ -3,11 +3,13 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
-using NooBIT.Web.Http;
-using NooBIT.Web.Middlewares;
-using NooBIT.Web.Performance;
+using NooBIT.AspNetCore.Mvc.AutoMapper;
+using NooBIT.AspNetCore.Mvc.Http;
+using NooBIT.AspNetCore.Mvc.Middlewares;
+using NooBIT.AspNetCore.Mvc.Optimization;
+using NooBIT.AspNetCore.Mvc.SimpleInjector;
 
-namespace NooBIT.Web.Sample
+namespace NooBIT.AspNetCore.Mvc.Sample
 {
     public class Startup
     {

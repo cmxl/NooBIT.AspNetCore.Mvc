@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace NooBIT.Web.Sample.Features.Sample
+namespace NooBIT.AspNetCore.Mvc.Sample.Features.Sample
 {
     public class SampleController : Controller
     {

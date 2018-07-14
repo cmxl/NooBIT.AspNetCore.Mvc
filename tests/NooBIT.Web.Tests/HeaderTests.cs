@@ -1,7 +1,7 @@
-﻿using NooBIT.Web.Http;
+﻿using NooBIT.AspNetCore.Mvc.Http;
 using Xunit;
 
-namespace NooBIT.Web.Tests
+namespace NooBIT.AspNetCore.Mvc.Tests
 {
     public class HeaderTests
     {

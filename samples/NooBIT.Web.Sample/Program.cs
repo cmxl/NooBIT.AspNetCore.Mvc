@@ -1,7 +1,7 @@
 ﻿using System.IO;
 using Microsoft.AspNetCore.Hosting;
 
-namespace NooBIT.Web.Sample
+namespace NooBIT.AspNetCore.Mvc.Sample
 {
     public class Program
     {

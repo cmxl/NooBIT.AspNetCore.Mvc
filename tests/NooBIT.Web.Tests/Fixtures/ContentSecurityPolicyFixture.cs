@@ -1,4 +1,4 @@
-﻿namespace NooBIT.Web.Tests.Fixtures
+﻿namespace NooBIT.AspNetCore.Mvc.Tests.Fixtures
 {
     public class ContentSecurityPolicyFixture
     {

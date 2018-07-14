@@ -1,4 +1,4 @@
-# NooBIT.Web
+# NooBIT.AspNetCore.Mvc
 
 Some useful ASP.NET Core performance and security extensions
 

@@ -1,8 +1,8 @@
-﻿using NooBIT.Web.Http;
-using NooBIT.Web.Security.FrameOptions;
+﻿using NooBIT.AspNetCore.Mvc.Http;
+using NooBIT.AspNetCore.Mvc.Security.FrameOptions;
 using Xunit;
 
-namespace NooBIT.Web.Tests
+namespace NooBIT.AspNetCore.Mvc.Tests
 {
     public class FrameOptionsTests
     {

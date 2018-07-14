@@ -1,11 +1,11 @@
-using NooBIT.Web.Http;
-using NooBIT.Web.Security.ContentSecurityPolicy;
-using NooBIT.Web.Security.ContentSecurityPolicy.Directives;
-using NooBIT.Web.Security.ContentSecurityPolicy.Sources;
-using NooBIT.Web.Tests.Fixtures;
+using NooBIT.AspNetCore.Mvc.Http;
+using NooBIT.AspNetCore.Mvc.Security.ContentSecurityPolicy;
+using NooBIT.AspNetCore.Mvc.Security.ContentSecurityPolicy.Directives;
+using NooBIT.AspNetCore.Mvc.Security.ContentSecurityPolicy.Sources;
+using NooBIT.AspNetCore.Mvc.Tests.Fixtures;
 using Xunit;
 
-namespace NooBIT.Web.Tests
+namespace NooBIT.AspNetCore.Mvc.Tests
 {
     public class ContentSecurityPolicyTests : IClassFixture<ContentSecurityPolicyFixture>
     {

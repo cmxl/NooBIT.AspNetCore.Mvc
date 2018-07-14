@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="wwwroot\**" />
+    <Content Remove="wwwroot\**" />
+    <EmbeddedResource Remove="wwwroot\**" />
+    <None Remove="wwwroot\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\NooBIT.AspNetCore.Mvc.AutoMapper\NooBIT.AspNetCore.Mvc.AutoMapper.csproj" />
+    <ProjectReference Include="..\..\src\NooBIT.AspNetCore.Mvc.Optimization\NooBIT.AspNetCore.Mvc.Optimization.csproj" />
+    <ProjectReference Include="..\..\src\NooBIT.AspNetCore.Mvc.SimpleInjector\NooBIT.AspNetCore.Mvc.SimpleInjector.csproj" />
+    <ProjectReference Include="..\..\src\NooBIT.Web\NooBIT.AspNetCore.Mvc.csproj" />
+  </ItemGroup>
+
+</Project>
