@@ -64,4 +64,4 @@ deploy:
     api_key:
       secure: QFivkZaNTwhBMw4M4ERmtvPs49spWkN+dyAoYjRTHTMUSprfDmYdOzcb7XPECGI4
     skip_symbols: false
-    artifact: '**NooBIT.AspNetCore.Mvc.%APPVEYOR_BUILD_VERSION%.nupkg'
+    artifact: NooBIT.AspNetCore.Mvc.%APPVEYOR_BUILD_VERSION%.nupkg
