@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Hosting;
 
 namespace NooBIT.AspNetCore.Mvc.Sample
 {
-    public class Program
+    public static class Program
     {
         public static void Main(string[] args)
         {

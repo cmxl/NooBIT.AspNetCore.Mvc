@@ -19,18 +19,18 @@ namespace NooBIT.AspNetCore.Mvc.FeatureFolders
             _nameDerivationStrategy = options.DeriveFeatureFolderName ?? DeriveFeatureFolderName;
         }
 
-        public void Apply(ControllerModel model)
+        public void Apply(ControllerModel controllerModel)
         {
-            if (model == null)
-                throw new ArgumentNullException(nameof(model));
+            if (controllerModel == null)
+                throw new ArgumentNullException(nameof(controllerModel));
 
-            var featureName = _nameDerivationStrategy(model);
-            model.Properties.Add("feature", featureName);
+            var featureName = _nameDerivationStrategy(controllerModel);
+            controllerModel.Properties.Add("feature", featureName);
         }
 
-        private string DeriveFeatureFolderName(ControllerModel model)
+        private string DeriveFeatureFolderName(ControllerModel controllerModel)
         {
-            var @namespace = model.ControllerType.Namespace;
+            var @namespace = controllerModel.ControllerType.Namespace;
             var result = @namespace.Split('.')
                 .SkipWhile(s => s != _folderName)
                 .Aggregate("", Path.Combine);

@@ -34,7 +34,6 @@ namespace NooBIT.AspNetCore.Mvc.Security.ReferrerPolicy
                 case ReferrerPolicyType.UnsafeUrl:
                     header.Value = ReferrerPolicyHeader.UnsafeUrl;
                     break;
-                case ReferrerPolicyType.StrictOriginWhenCrossOrigin:
                 default:
                     header.Value = ReferrerPolicyHeader.StrictOriginWhenCrossOrigin;
                     break;

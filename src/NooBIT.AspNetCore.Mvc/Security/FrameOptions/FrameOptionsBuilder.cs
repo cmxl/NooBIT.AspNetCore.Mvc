@@ -23,7 +23,6 @@ namespace NooBIT.AspNetCore.Mvc.Security.FrameOptions
                 case FrameOptionsType.AllowFrom:
                     header.Value = FrameOptionsHeader.AllowFrom + " " + _allowFromUrl;
                     break;
-                case FrameOptionsType.SameOrigin:
                 default:
                     header.Value = FrameOptionsHeader.SameOrigin;
                     break;

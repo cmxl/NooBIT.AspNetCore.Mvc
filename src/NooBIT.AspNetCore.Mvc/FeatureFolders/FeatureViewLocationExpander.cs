@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc.Controllers;
 using Microsoft.AspNetCore.Mvc.Razor;
 
@@ -20,15 +19,8 @@ namespace NooBIT.AspNetCore.Mvc.FeatureFolders
             context.Values["action_displayname"] = context.ActionContext.ActionDescriptor.DisplayName;
         }
 
-        public IEnumerable<string> ExpandViewLocations(ViewLocationExpanderContext context,
-            IEnumerable<string> viewLocations)
+        public IEnumerable<string> ExpandViewLocations(ViewLocationExpanderContext context, IEnumerable<string> viewLocations)
         {
-            if (context == null)
-                throw new ArgumentNullException(nameof(context));
-
-            if (viewLocations == null)
-                throw new ArgumentNullException(nameof(viewLocations));
-
             var controllerDescriptor = context.ActionContext.ActionDescriptor as ControllerActionDescriptor;
             var featureName = controllerDescriptor?.Properties["feature"] as string;
 

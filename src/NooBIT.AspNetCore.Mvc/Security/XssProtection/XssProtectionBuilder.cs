@@ -36,7 +36,6 @@ namespace NooBIT.AspNetCore.Mvc.Security.XssProtection
                 case XssProtectionType.Enable:
                     header.Value =XssProtectionHeader.Enable;
                     break;
-                case XssProtectionType.Block:
                 default:
                     header.Value = XssProtectionHeader.Block;
                     break;

@@ -1,0 +1,69 @@
+version: 1.0.0.{build}
+
+environment:
+  sonar_project: "NooBIT.AspNetCore.Mvc"
+  sonar_organization: "noobit"
+  sonar_token:
+    secure: iWa2RuCudhm1QFn1k/Vu/pSi6wnMNuLmcZnXCP3sOMqKRB779uylQN9b1NQpcmRA
+  nuget_token:
+    secure: QFivkZaNTwhBMw4M4ERmtvPs49spWkN+dyAoYjRTHTMUSprfDmYdOzcb7XPECGI4
+
+  
+
+branches:
+  only:
+  - master
+
+skip_branch_with_pr: true
+skip_tags: true
+
+max_jobs: 1
+
+image: Visual Studio 2017
+
+configuration: Release
+
+dotnet_csproj:
+  patch: true
+  file: '**\*.csproj'
+  version: {version}
+  package_version: {version}
+  assembly_version: {version}
+  file_version: {version}
+  informational_version: {version}
+
+matrix:
+  fast_finish: true
+
+install:
+  - cmd: dotnet tool install dotnet-sonarscanner
+
+before_build:
+- cmd: >-
+    dotnet clean -c Release
+    dotnet sonarscanner begin /k:%sonar_project% /d:sonar.organization=%sonar_organization% /d:sonar.host.url="https://sonarcloud.io" /d:sonar.login="%sonar_token%"
+
+build:
+  parallel: true
+  project: NooBIT.AspNetCore.Mvc.sln
+  publish_nuget: true
+  verbosity: normal
+
+after_build:
+  - cmd: dotnet sonarscanner end /d:sonar.login="%sonar_token%"
+
+test:
+  assemblies:
+    only:
+      - tests\NooBIT.AspNetCore.Mvc.Tests\bin\Release\NooBIT.AspNetCore.Mvc.Tests.dll
+
+artifacts:
+  - path: '**\*.nupkg'
+
+deploy:
+  - provider: NuGet
+    server: https://api.nuget.org/v3/index.json
+    api_key:
+      secure: "%nuget_token%"
+    skip_symbols: false
+    artifact: NooBIT.AspNetCore.Mvc.{version}.nupkg
