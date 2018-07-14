@@ -8,8 +8,6 @@ environment:
   nuget_token:
     secure: QFivkZaNTwhBMw4M4ERmtvPs49spWkN+dyAoYjRTHTMUSprfDmYdOzcb7XPECGI4
 
-  
-
 branches:
   only:
   - master
@@ -35,13 +33,18 @@ dotnet_csproj:
 matrix:
   fast_finish: true
 
+init:
+  - cmd: echo %sonar_project%
+  - cmd: echo %sonar_organization%
+  - cmd: echo %sonar_token%
+  - cmd: echo %nuget_token%
+  - cmd: echo {version}
+
 install:
   - cmd: dotnet tool install --global dotnet-sonarscanner
 
 before_build:
-- cmd: >-
-    dotnet clean -c Release
-    dotnet sonarscanner begin /k:%sonar_project% /d:sonar.organization=%sonar_organization% /d:sonar.host.url="https://sonarcloud.io" /d:sonar.login="%sonar_token%"
+  - cmd: dotnet sonarscanner begin /k:%sonar_project% /d:sonar.organization=%sonar_organization% /d:sonar.host.url="https://sonarcloud.io" /d:sonar.login="%sonar_token%"
 
 build:
   parallel: true
