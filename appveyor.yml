@@ -44,6 +44,7 @@ install:
   - cmd: dotnet tool install --global dotnet-sonarscanner
 
 before_build:
+  - cmd: dotnet restore
   - cmd: dotnet sonarscanner begin /k:%sonar_project% /d:sonar.organization=%sonar_organization% /d:sonar.host.url="https://sonarcloud.io" /d:sonar.login="%sonar_token%"
 
 build:
