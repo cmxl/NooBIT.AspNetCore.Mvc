@@ -1,14 +1,15 @@
 ﻿using System;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
 using NooBIT.AspNetCore.Mvc.Http;
 
 namespace NooBIT.AspNetCore.Mvc.Middlewares
 {
     public static class MiddlewareExtensions
     {
-        public static IApplicationBuilder UseRecommendedSecurityHeaders(this IApplicationBuilder app)
+        public static IApplicationBuilder UseRecommendedSecurityHeaders(this IApplicationBuilder app, IHostingEnvironment environment)
         {
-            return app.UseCustomHeaders(new HeaderPolicyBuilder().AddRecommendedSecurityHeaders());
+            return app.UseCustomHeaders(new HeaderPolicyBuilder().AddRecommendedSecurityHeaders(environment));
         }
 
         public static IApplicationBuilder UseCustomHeaders(this IApplicationBuilder app, HeaderPolicyBuilder builder)

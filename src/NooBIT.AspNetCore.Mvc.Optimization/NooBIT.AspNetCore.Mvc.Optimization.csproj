@@ -15,10 +15,11 @@
 
   <ItemGroup>
     <PackageReference Include="LigerShark.WebOptimizer.Core" Version="1.0.215" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="2.1.1" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\NooBIT.Web\NooBIT.AspNetCore.Mvc.csproj" />
+    <ProjectReference Include="..\NooBIT.AspNetCore.Mvc\NooBIT.AspNetCore.Mvc.csproj" />
   </ItemGroup>
 
 </Project>

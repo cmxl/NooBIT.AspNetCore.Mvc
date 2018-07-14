@@ -1,4 +1,5 @@
 ﻿using System;
+using Microsoft.AspNetCore.Hosting;
 using NooBIT.AspNetCore.Mvc.Http.Headers;
 using NooBIT.AspNetCore.Mvc.Security.ContentSecurityPolicy;
 using NooBIT.AspNetCore.Mvc.Security.FrameOptions;
@@ -41,15 +42,11 @@ namespace NooBIT.AspNetCore.Mvc.Http
             return _policy;
         }
 
-        public HeaderPolicyBuilder AddRecommendedSecurityHeaders()
+        public HeaderPolicyBuilder AddRecommendedSecurityHeaders(IHostingEnvironment environment)
         {
-            return RemoveServerHeader()
+            RemoveServerHeader()
                 .RemovePoweredByHeader()
                 .AddContentTypeOptionsNoSniff()
-                .AddStrictTransportSecurity(new StrictTransportSecurityBuilder()
-                    .UseMaxAge((uint) TimeSpan.FromDays(365).TotalSeconds)
-                    .WithIncludeSubDomains()
-                    .WithPreload())
                 .AddContentSecurity(new ContentSecurityPolicyBuilder()
                     .Default())
                 .AddXssProtection(new XssProtectionBuilder()
@@ -58,6 +55,16 @@ namespace NooBIT.AspNetCore.Mvc.Http
                     .UseSameOrigin())
                 .AddReferrerPolicy(new ReferrerPolicyBuilder()
                     .UseStrictOriginWhenCrossOrigin());
+
+            if (!environment.IsDevelopment())
+            {
+                AddStrictTransportSecurity(new StrictTransportSecurityBuilder()
+                    .UseMaxAge((uint) TimeSpan.FromDays(365).TotalSeconds)
+                    .WithIncludeSubDomains()
+                    .WithPreload());
+            }
+
+            return this;
         }
 
         public HeaderPolicyBuilder RemoveServerHeader()

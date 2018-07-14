@@ -14,7 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\NooBIT.Web\NooBIT.AspNetCore.Mvc.csproj" />
+    <ProjectReference Include="..\..\src\NooBIT.AspNetCore.Mvc\NooBIT.AspNetCore.Mvc.csproj" />
   </ItemGroup>
 
 </Project>

@@ -4,7 +4,7 @@ using NooBIT.AspNetCore.Mvc.Middlewares;
 
 namespace NooBIT.AspNetCore.Mvc.Optimization
 {
-    public static class MiddlewareExtensiosn
+    public static class MiddlewareExtensions
     {
         public static IApplicationBuilder UseWebOptimizations(this IApplicationBuilder app, IWebOptimization webOptimization)
         {
