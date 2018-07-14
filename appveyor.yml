@@ -36,7 +36,7 @@ matrix:
   fast_finish: true
 
 install:
-  - cmd: dotnet tool install dotnet-sonarscanner
+  - cmd: dotnet tool install --global dotnet-sonarscanner
 
 before_build:
 - cmd: >-
