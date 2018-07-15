@@ -1,6 +1,6 @@
 ﻿namespace NooBIT.AspNetCore.Mvc.Http.Headers
 {
-    internal class FrameOptionsHeader : Header
+    public sealed class FrameOptionsHeader : Header
     {
         public static readonly string Deny = "DENY";
         public static readonly string SameOrigin = "SAMEORIGIN";

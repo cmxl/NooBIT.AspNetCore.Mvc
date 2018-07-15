@@ -1,6 +1,6 @@
 ﻿namespace NooBIT.AspNetCore.Mvc.Http.Headers
 {
-    internal class ExpiresHeader : Header
+    public sealed class ExpiresHeader : Header
     {
         internal ExpiresHeader() : base("Expires")
         {

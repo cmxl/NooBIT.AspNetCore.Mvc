@@ -1,6 +1,6 @@
 ﻿namespace NooBIT.AspNetCore.Mvc.Http.Headers
 {
-    internal class XssProtectionHeader : Header
+    public sealed class XssProtectionHeader : Header
     {
         public static readonly string Disable = "0";
         public static readonly string Enable = "1";

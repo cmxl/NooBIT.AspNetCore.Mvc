@@ -1,6 +1,6 @@
 ﻿namespace NooBIT.AspNetCore.Mvc.Http.Headers
 {
-    internal class CacheControlHeader : Header
+    public sealed class CacheControlHeader : Header
     {
         internal CacheControlHeader() : base("Cache-Control")
         {

@@ -1,6 +1,6 @@
 ﻿namespace NooBIT.AspNetCore.Mvc.Http.Headers
 {
-    internal class ContentTypeOptionsHeader : Header
+    public sealed class ContentTypeOptionsHeader : Header
     {
         public static readonly string NoSniff = "nosniff";
 

@@ -1,6 +1,6 @@
 ﻿namespace NooBIT.AspNetCore.Mvc.Http.Headers
 {
-    internal class PoweredByHeader : Header
+    public sealed class PoweredByHeader : Header
     {
         internal PoweredByHeader() : base("X-Powered-By")
         {

@@ -1,6 +1,6 @@
 ﻿namespace NooBIT.AspNetCore.Mvc.Http.Headers
 {
-    internal class ReferrerPolicyHeader : Header
+    public sealed class ReferrerPolicyHeader : Header
     {
         public static readonly string NoReferrer = "no-referrer";
         public static readonly string NoReferrerWhenDowngrade = "no-referrer-when-downgrade";

@@ -1,6 +1,6 @@
 ﻿namespace NooBIT.AspNetCore.Mvc.Http.Headers
 {
-    internal class StrictTransportSecurityHeader : Header
+    public sealed class StrictTransportSecurityHeader : Header
     {
         internal StrictTransportSecurityHeader() : base("Strict-Transport-Security")
         {
