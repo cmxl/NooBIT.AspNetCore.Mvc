@@ -9,6 +9,9 @@
 *.userosscache
 *.sln.docstates
 
+# VS Code
+.vscode
+
 # sonarcloud
 .sonarqube
 

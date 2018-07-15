@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
 using NooBIT.AspNetCore.Mvc.AutoMapper;
+using NooBIT.AspNetCore.Mvc.Builders;
 using NooBIT.AspNetCore.Mvc.Http;
 using NooBIT.AspNetCore.Mvc.Middlewares;
 using NooBIT.AspNetCore.Mvc.Optimization;
@@ -38,7 +39,7 @@ namespace NooBIT.AspNetCore.Mvc.Sample
             app.UseWebOptimizations(_webOptimizations); // style and script bundling options aswell as caching and compression can be configured via IWebOptimization interface
             app.UseForwardedHeaders(new ForwardedHeadersOptions {ForwardedHeaders = ForwardedHeaders.All}); // useful if behind a proxy e.g. nginx
             app.UseRecommendedSecurityHeaders(environment); // if development environment hsts is omitted!
-            app.UseCustomHeaders(new HeaderPolicyBuilder().AddHeader(new Header("X-Custom-Header") {Value = "My Custom Value!"})); // custom headers can be added easily!
+            app.UseCustomHeaders(new HeaderPolicyBuilder().AddHeader(new MyCustomHeaderBuilder().WithValue("My Custom Value!"))); // custom headers can be added easily!
             app.UseMvcWithDefaultRoute(); // i prefer default routes as a fallback, but i really just use attributes
         }
     }

@@ -139,5 +139,96 @@ public void ConfigureServices(IServiceCollection services)
 
 ### Custom Headers
 
-This is gonna be a bit more to write.
-*To be continued...*
+You can create your own headers by using the `Header` class.
+
+```csharp
+new Header("X-My-Header") { Value = "my value" };
+```
+
+Or just inherit from it.
+
+```csharp
+public class MyHeader : Header
+{
+    public MyHeader() : base("X-My-Header")
+    {
+    }
+}
+```
+
+You can now use the header with the `HeaderPolicyBuilder` and the `CustomHeaderMiddleware`:
+
+```csharp
+app.UseCustomHeaders(new HeaderPolicyBuilder().AddHeader(new MyHeader() { Value = "My Custom Value!" }));
+```
+
+Another approach could be to create your own `IHeaderBuilder` implementation.
+
+```csharp
+public class MyCustomHeaderBuilder : IHeaderBuilder
+{
+    private string _value;
+
+    public MyCustomHeaderBuilder WithValue(string value)
+    {
+        _value = value;
+        return this;
+    }
+
+    public Header Build()
+    {
+        return new MyHeader() { Value = _value };
+    }
+}
+```
+
+Then use the builder directly with the `HeaderPolicyBuilder`.
+
+```csharp
+app.UseCustomHeaders(new HeaderPolicyBuilder().AddHeader(new MyCustomHeaderBuilder().WithValue("My Custom Value!")));
+```
+
+Built-in [Headers](https://github.com/cmxl/NooBIT.AspNetCore.Mvc/tree/master/src/NooBIT.AspNetCore.Mvc/Http/Headers) and [Builders](https://github.com/cmxl/NooBIT.AspNetCore.Mvc/tree/master/src/NooBIT.AspNetCore.Mvc/Security):
+
+* `ContentSecurityPolicyBuilder`
+* `FrameOptionsBuilder`
+* `ReferrerPolicyBuilder`
+* `StrictTransportSecurityBuilder`
+* `XssProtectionBuilder`
+
+You can use recommended security headers easily via the following extension:
+
+```csharp
+new HeaderPolicyBuilder().AddRecommendedSecurityHeaders(environment);
+```
+
+Which uses the following declarations
+
+```csharp
+public HeaderPolicyBuilder AddRecommendedSecurityHeaders(IHostingEnvironment environment)
+{
+    RemoveServerHeader()
+        .RemovePoweredByHeader()
+        .AddContentTypeOptionsNoSniff()
+        .AddContentSecurity(new ContentSecurityPolicyBuilder()
+            .Default())
+        .AddXssProtection(new XssProtectionBuilder()
+            .Block())
+        .AddFrameOptions(new FrameOptionsBuilder()
+            .UseSameOrigin())
+        .AddReferrerPolicy(new ReferrerPolicyBuilder()
+            .UseStrictOriginWhenCrossOrigin());
+
+    if (!environment.IsDevelopment())
+    {
+        AddStrictTransportSecurity(new StrictTransportSecurityBuilder()
+            .UseMaxAge((uint) TimeSpan.FromDays(365).TotalSeconds)
+            .WithIncludeSubDomains()
+            .WithPreload());
+    }
+
+    return this;
+}
+```
+
+If you need more control over those header values you can just use the builders as you want 😉.
