@@ -9,7 +9,7 @@ namespace NooBIT.AspNetCore.Mvc.Security.StrictTransportSecurity
         private const string MaxAgeDirectiveFormat = "max-age={0}";
         private const string IncludeSubDomainsDirective = "; includeSubDomains";
         private const string PreloadDirective = "; preload";
-        private const uint MinimumPreloadMaxAge = 10886400;
+        private static readonly TimeSpan MinimumPreloadMaxAge = TimeSpan.FromDays(126);
 
         private uint _maxAge;
         private bool _includeSubDmonains;
@@ -35,8 +35,8 @@ namespace NooBIT.AspNetCore.Mvc.Security.StrictTransportSecurity
 
         public Header Build()
         {
-            if(_maxAge < MinimumPreloadMaxAge && _preload)
-                throw new InvalidOperationException($"In order to confirm HSTS preload list subscription expiry must be at least eighteen weeks ({MinimumPreloadMaxAge} seconds).");
+            if(_maxAge < MinimumPreloadMaxAge.TotalSeconds && _preload)
+                throw new InvalidOperationException($"In order to confirm HSTS preload list subscription expiry must be at least eighteen weeks ({MinimumPreloadMaxAge.TotalSeconds} seconds).");
 
             if(_preload && !_includeSubDmonains)
                 throw new InvalidOperationException("In order to confirm HSTS preload list subscription subdomains must be included.");
