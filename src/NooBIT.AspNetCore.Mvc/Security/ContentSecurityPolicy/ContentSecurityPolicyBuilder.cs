@@ -117,7 +117,7 @@ namespace NooBIT.AspNetCore.Mvc.Security.ContentSecurityPolicy
         public ContentSecurityPolicyBuilder Default()
         {
             return AddDefaultSource(x => x.AddSource(Source.Self))
-                .AddBaseUri(x => x.AddDataSource(string.Empty))
+                .AddBaseUri(x => x.AddSource(Source.Self))
                 .AddScriptSource(x => x.AddSource(Source.Self))
                 .AddStyleSource(x => x.AddSource(Source.Self))
                 .AddFontSource(x => x.AddSource(Source.Self));
