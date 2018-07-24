@@ -9,6 +9,7 @@ namespace NooBIT.AspNetCore.Mvc.AutoMapper
         public static IServiceCollection AddAutoMapperWithValidation(this IServiceCollection services, params Assembly[] assemblies)
         {
             services.AddAutoMapper(assemblies);
+            Mapper.Initialize(x => x.AddProfiles(assemblies));
             Mapper.AssertConfigurationIsValid();
             return services;
         }
