@@ -12,9 +12,9 @@ namespace NooBIT.AspNetCore.Mvc.SimpleInjector
 {
     public static class MiddlewareExtensions
     {
-        public static IServiceCollection AddSimpleInjector(this IServiceCollection services, Action<Container> registerComponents, VerificationOption verificationOption = VerificationOption.VerifyAndDiagnose)
+        public static IServiceCollection AddSimpleInjector(this IServiceCollection services, Action<Container> registerComponents, out Container container, VerificationOption verificationOption = VerificationOption.VerifyAndDiagnose)
         {
-            var container = new Container();
+            container = new Container();
             container.Options.DefaultScopedLifestyle = new AsyncScopedLifestyle();
 
             services.AddSingleton<IActionContextAccessor, ActionContextAccessor>();
