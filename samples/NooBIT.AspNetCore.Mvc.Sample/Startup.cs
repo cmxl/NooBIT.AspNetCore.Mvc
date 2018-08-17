@@ -9,12 +9,14 @@ using NooBIT.AspNetCore.Mvc.Http;
 using NooBIT.AspNetCore.Mvc.Middlewares;
 using NooBIT.AspNetCore.Mvc.Optimization;
 using NooBIT.AspNetCore.Mvc.SimpleInjector;
+using SimpleInjector;
 
 namespace NooBIT.AspNetCore.Mvc.Sample
 {
     public class Startup
     {
         private readonly WebOptimization _webOptimizations;
+        private  Container _container;
 
         public Startup(IHostingEnvironment environment)
         {
@@ -29,13 +31,16 @@ namespace NooBIT.AspNetCore.Mvc.Sample
             services.AddMvc().AddFeatureFolders().SetCompatibilityVersion(CompatibilityVersion.Latest);
             services.AddRouting(options => options.LowercaseUrls = true); // lowercase urls just look better :p
             services.AddWebOptimizations(_webOptimizations); // style and script bundling options aswell as caching and compression can be configured via IWebOptimization interface
-            services.AddSimpleInjector(x => { /* register your stuff here. basic wiring of controllers and stuff is already done internally */ }, out _);
+            services.AddSimpleInjector(x => { /* register your stuff here. basic wiring of controllers and stuff is already done internally */ }, out _container);
             services.AddAutoMapperWithValidation(typeof(Startup).Assembly); // after adding automapper lets also validate all configs!
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment environment)
         {
+            _container.AutoCrossWireAspNetComponents(app);
+            _container.Verify();
+
             app.UseWebOptimizations(_webOptimizations); // style and script bundling options aswell as caching and compression can be configured via IWebOptimization interface
             app.UseForwardedHeaders(new ForwardedHeadersOptions {ForwardedHeaders = ForwardedHeaders.All}); // useful if behind a proxy e.g. nginx
             app.UseRecommendedSecurityHeaders(environment); // if development environment hsts is omitted!
