@@ -12,7 +12,7 @@ namespace NooBIT.AspNetCore.Mvc.SimpleInjector
 {
     public static class MiddlewareExtensions
     {
-        public static IServiceCollection AddSimpleInjector(this IServiceCollection services, Action<Container> registerComponents, out Container container, VerificationOption verificationOption = VerificationOption.VerifyAndDiagnose)
+        public static IServiceCollection AddSimpleInjector(this IServiceCollection services, Action<Container> registerComponents, out Container container)
         {
             container = new Container();
             container.Options.DefaultScopedLifestyle = new AsyncScopedLifestyle();
@@ -27,8 +27,6 @@ namespace NooBIT.AspNetCore.Mvc.SimpleInjector
 
             services.EnableSimpleInjectorCrossWiring(container);
             services.UseSimpleInjectorAspNetRequestScoping(container);
-
-            container.Verify(verificationOption);
 
             return services;
         }
