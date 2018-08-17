@@ -29,7 +29,7 @@ namespace NooBIT.AspNetCore.Mvc.Sample
             services.AddMvc().AddFeatureFolders().SetCompatibilityVersion(CompatibilityVersion.Latest);
             services.AddRouting(options => options.LowercaseUrls = true); // lowercase urls just look better :p
             services.AddWebOptimizations(_webOptimizations); // style and script bundling options aswell as caching and compression can be configured via IWebOptimization interface
-            services.AddSimpleInjector(x => { /* register your stuff here. basic wiring of controllers and stuff is already done internally */ });
+            services.AddSimpleInjector(x => { /* register your stuff here. basic wiring of controllers and stuff is already done internally */ }, out _);
             services.AddAutoMapperWithValidation(typeof(Startup).Assembly); // after adding automapper lets also validate all configs!
         }
 
