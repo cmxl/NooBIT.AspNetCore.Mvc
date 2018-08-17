@@ -97,14 +97,11 @@ public static IServiceCollection AddAutoMapperWithValidation(this IServiceCollec
 
 An extension to configure SimpleInjector with all common registrations and cross wiring.
 You only need to register your own stuff via the registerComponents action.
-To make it even more robust `Verify()` will be called automatically.
-You can sepcifiy the `VerificationOption` to adjust to gain a bit more performance in production environments.
-
 
 ```csharp
-public static IServiceCollection AddSimpleInjector(this IServiceCollection services, Action<Container> registerComponents, VerificationOption verificationOption = VerificationOption.VerifyAndDiagnose)
+public static IServiceCollection AddSimpleInjector(this IServiceCollection services, Action<Container> registerComponents, out Container container)
 {
-    var container = new Container();
+    container = new Container();
     container.Options.DefaultScopedLifestyle = new AsyncScopedLifestyle();
 
     services.AddSingleton<IActionContextAccessor, ActionContextAccessor>();
@@ -117,8 +114,6 @@ public static IServiceCollection AddSimpleInjector(this IServiceCollection servi
 
     services.EnableSimpleInjectorCrossWiring(container);
     services.UseSimpleInjectorAspNetRequestScoping(container);
-
-    container.Verify(verificationOption);
 
     return services;
 }
@@ -133,7 +128,7 @@ public void ConfigureServices(IServiceCollection services)
     {
         // register your stuff here. basic wiring of controllers and stuff is already done internally
         container.Register<IMyImplementation, MyImplementation>(); 
-    }, VerificationOption.VerifyOnly);
+    }, out _);
 }
 ```
 
