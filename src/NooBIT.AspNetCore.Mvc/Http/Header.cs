@@ -13,6 +13,7 @@ namespace NooBIT.AspNetCore.Mvc.Http
         public static Header ContentSecurityPolicy => new ContentSecurityPolicyHeader();
         public static Header PoweredBy => new PoweredByHeader();
         public static Header CacheControl => new CacheControlHeader();
+        public static Header ClearSiteData => new ClearSiteDataHeader();
         public static Header Expires => new ExpiresHeader();
 
         public Header(string name)
