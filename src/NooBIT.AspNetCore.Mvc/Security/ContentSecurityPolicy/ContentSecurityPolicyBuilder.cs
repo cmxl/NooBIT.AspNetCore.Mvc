@@ -1,10 +1,10 @@
-﻿using System;
+﻿using NooBIT.AspNetCore.Mvc.Http;
+using NooBIT.AspNetCore.Mvc.Security.ContentSecurityPolicy.Directives;
+using NooBIT.AspNetCore.Mvc.Security.ContentSecurityPolicy.Sources;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using NooBIT.AspNetCore.Mvc.Http;
-using NooBIT.AspNetCore.Mvc.Security.ContentSecurityPolicy.Directives;
-using NooBIT.AspNetCore.Mvc.Security.ContentSecurityPolicy.Sources;
 
 namespace NooBIT.AspNetCore.Mvc.Security.ContentSecurityPolicy
 {
@@ -12,100 +12,43 @@ namespace NooBIT.AspNetCore.Mvc.Security.ContentSecurityPolicy
     {
         private readonly List<Directive> _directives = new List<Directive>();
 
-        public ContentSecurityPolicyBuilder AddBaseUri(Action<Directive> directiveAction)
-        {
-            return AddDirective(new BaseUri(), directiveAction);
-        }
+        public ContentSecurityPolicyBuilder AddBaseUri(Action<Directive> directiveAction) => AddDirective(new BaseUri(), directiveAction);
 
-        public ContentSecurityPolicyBuilder AddBlockAllMixedContent()
-        {
-            return AddDirective(new BlockAllMixedContent(), null);
-        }
+        public ContentSecurityPolicyBuilder AddBlockAllMixedContent() => AddDirective(new BlockAllMixedContent(), null);
 
-        public ContentSecurityPolicyBuilder AddConnectSource(Action<BlockAllMixedContent> directiveAction)
-        {
-            return AddDirective(new BlockAllMixedContent(), directiveAction);
-        }
+        public ContentSecurityPolicyBuilder AddConnectSource(Action<BlockAllMixedContent> directiveAction) => AddDirective(new BlockAllMixedContent(), directiveAction);
 
-        public ContentSecurityPolicyBuilder AddDefaultSource(Action<DefaultSource> directiveAction)
-        {
-            return AddDirective(new DefaultSource(), directiveAction);
-        }
+        public ContentSecurityPolicyBuilder AddDefaultSource(Action<DefaultSource> directiveAction) => AddDirective(new DefaultSource(), directiveAction);
 
-        public ContentSecurityPolicyBuilder AddFontSource(Action<FontSource> directiveAction)
-        {
-            return AddDirective(new FontSource(), directiveAction);
-        }
+        public ContentSecurityPolicyBuilder AddFontSource(Action<FontSource> directiveAction) => AddDirective(new FontSource(), directiveAction);
 
-        public ContentSecurityPolicyBuilder AddFrameAncestors(Action<FrameAncestors> directiveAction)
-        {
-            return AddDirective(new FrameAncestors(), directiveAction);
-        }
+        public ContentSecurityPolicyBuilder AddFrameAncestors(Action<FrameAncestors> directiveAction) => AddDirective(new FrameAncestors(), directiveAction);
 
-        public ContentSecurityPolicyBuilder AddFrameSource(Action<FrameSource> directiveAction)
-        {
-            return AddDirective(new FrameSource(), directiveAction);
-        }
+        public ContentSecurityPolicyBuilder AddFrameSource(Action<FrameSource> directiveAction) => AddDirective(new FrameSource(), directiveAction);
 
-        public ContentSecurityPolicyBuilder AddImageSource(Action<ImageSource> directiveAction)
-        {
-            return AddDirective(new ImageSource(), directiveAction);
-        }
+        public ContentSecurityPolicyBuilder AddImageSource(Action<ImageSource> directiveAction) => AddDirective(new ImageSource(), directiveAction);
 
-        public ContentSecurityPolicyBuilder AddManifestSource(Action<ManifestSource> directiveAction)
-        {
-            return AddDirective(new ManifestSource(), directiveAction);
-        }
+        public ContentSecurityPolicyBuilder AddManifestSource(Action<ManifestSource> directiveAction) => AddDirective(new ManifestSource(), directiveAction);
 
-        public ContentSecurityPolicyBuilder AddMediaSource(Action<MediaSource> directiveAction)
-        {
-            return AddDirective(new MediaSource(), directiveAction);
-        }
+        public ContentSecurityPolicyBuilder AddMediaSource(Action<MediaSource> directiveAction) => AddDirective(new MediaSource(), directiveAction);
 
-        public ContentSecurityPolicyBuilder AddObjectSource(Action<ObjectSource> directiveAction)
-        {
-            return AddDirective(new ObjectSource(), directiveAction);
-        }
+        public ContentSecurityPolicyBuilder AddObjectSource(Action<ObjectSource> directiveAction) => AddDirective(new ObjectSource(), directiveAction);
 
-        public ContentSecurityPolicyBuilder AddPluginTypes(Action<PluginTypes> directiveAction)
-        {
-            return AddDirective(new PluginTypes(), directiveAction);
-        }
+        public ContentSecurityPolicyBuilder AddPluginTypes(Action<PluginTypes> directiveAction) => AddDirective(new PluginTypes(), directiveAction);
 
-        public ContentSecurityPolicyBuilder AddReferrer(Action<Referrer> directiveAction)
-        {
-            return AddDirective(new Referrer(), directiveAction);
-        }
+        public ContentSecurityPolicyBuilder AddReferrer(Action<Referrer> directiveAction) => AddDirective(new Referrer(), directiveAction);
 
-        public ContentSecurityPolicyBuilder AddRequireSriFor(Action<RequireSriFor> directiveAction)
-        {
-            return AddDirective(new RequireSriFor(), directiveAction);
-        }
+        public ContentSecurityPolicyBuilder AddRequireSriFor(Action<RequireSriFor> directiveAction) => AddDirective(new RequireSriFor(), directiveAction);
 
-        public ContentSecurityPolicyBuilder AddSandbox(Action<Sandbox> directiveAction)
-        {
-            return AddDirective(new Sandbox(), directiveAction);
-        }
+        public ContentSecurityPolicyBuilder AddSandbox(Action<Sandbox> directiveAction) => AddDirective(new Sandbox(), directiveAction);
 
-        public ContentSecurityPolicyBuilder AddScriptSource(Action<ScriptSource> directiveAction)
-        {
-            return AddDirective(new ScriptSource(), directiveAction);
-        }
+        public ContentSecurityPolicyBuilder AddScriptSource(Action<ScriptSource> directiveAction) => AddDirective(new ScriptSource(), directiveAction);
 
-        public ContentSecurityPolicyBuilder AddStyleSource(Action<StyleSource> directiveAction)
-        {
-            return AddDirective(new StyleSource(), directiveAction);
-        }
+        public ContentSecurityPolicyBuilder AddStyleSource(Action<StyleSource> directiveAction) => AddDirective(new StyleSource(), directiveAction);
 
-        public ContentSecurityPolicyBuilder AddUpgradeInsecureRequests()
-        {
-            return AddDirective(new UpgradeInsecureRequests(), null);
-        }
+        public ContentSecurityPolicyBuilder AddUpgradeInsecureRequests() => AddDirective(new UpgradeInsecureRequests(), null);
 
-        public ContentSecurityPolicyBuilder AddWorkerSource(Action<WorkerSource> directiveAction)
-        {
-            return AddDirective(new WorkerSource(), directiveAction);
-        }
+        public ContentSecurityPolicyBuilder AddWorkerSource(Action<WorkerSource> directiveAction) => AddDirective(new WorkerSource(), directiveAction);
 
         public ContentSecurityPolicyBuilder AddDirective<T>(T directive, Action<T> directiveAction) where T : Directive
         {
@@ -114,14 +57,12 @@ namespace NooBIT.AspNetCore.Mvc.Security.ContentSecurityPolicy
             return this;
         }
 
-        public ContentSecurityPolicyBuilder Default()
-        {
-            return AddDefaultSource(x => x.AddSource(Source.Self))
+        public ContentSecurityPolicyBuilder Default() => 
+                AddDefaultSource(x => x.AddSource(Source.Self))
                 .AddBaseUri(x => x.AddSource(Source.Self))
                 .AddScriptSource(x => x.AddSource(Source.Self))
                 .AddStyleSource(x => x.AddSource(Source.Self))
                 .AddFontSource(x => x.AddSource(Source.Self));
-        }
 
         public Header Build()
         {

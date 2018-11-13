@@ -1,7 +1,7 @@
-﻿using System;
-using NooBIT.AspNetCore.Mvc.Http;
+﻿using NooBIT.AspNetCore.Mvc.Http;
 using NooBIT.AspNetCore.Mvc.Http.Headers;
 using NooBIT.AspNetCore.Mvc.Security.FrameOptions;
+using System;
 using Xunit;
 
 namespace NooBIT.AspNetCore.Mvc.Tests
@@ -14,7 +14,7 @@ namespace NooBIT.AspNetCore.Mvc.Tests
             const string url = "https://www.google.com";
 
             var builder = new FrameOptionsBuilder();
-            var header = builder.UseDeny().UseSameOrigin().UseAllowFrom(url).Build();
+            var header = builder.Deny().SameOrigin().AllowFrom(url).Build();
 
             Assert.NotNull(header);
             Assert.Equal(Header.FrameOptions.Name, header.Name);
@@ -28,21 +28,21 @@ namespace NooBIT.AspNetCore.Mvc.Tests
         public void Empty_Allow_From_Url_Throws_ArgumentNullException(string url)
         {
             var builder = new FrameOptionsBuilder();
-            Assert.Throws<ArgumentNullException>(() => builder.UseAllowFrom(url));
+            Assert.Throws<ArgumentNullException>(() => builder.AllowFrom(url));
         }
 
         [Fact]
         public void UseDeny_Has_Correct_Value()
         {
             var builder = new FrameOptionsBuilder();
-            Assert.Equal(FrameOptionsHeader.Deny, builder.UseDeny().Build().Value);
+            Assert.Equal(FrameOptionsHeader.Deny, builder.Deny().Build().Value);
         }
 
         [Fact]
         public void UseSameOrigin_Has_Correct_Value()
         {
             var builder = new FrameOptionsBuilder();
-            Assert.Equal(FrameOptionsHeader.SameOrigin, builder.UseSameOrigin().Build().Value);
+            Assert.Equal(FrameOptionsHeader.SameOrigin, builder.SameOrigin().Build().Value);
         }
 
         [Fact]
@@ -50,7 +50,7 @@ namespace NooBIT.AspNetCore.Mvc.Tests
         {
             const string url = "https://www.google.com";
             var builder = new FrameOptionsBuilder();
-            Assert.Equal($"{FrameOptionsHeader.AllowFrom} {url}", builder.UseAllowFrom(url).Build().Value);
+            Assert.Equal($"{FrameOptionsHeader.AllowFrom} {url}", builder.AllowFrom(url).Build().Value);
         }
     }
 }

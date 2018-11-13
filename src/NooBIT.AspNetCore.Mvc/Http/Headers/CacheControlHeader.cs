@@ -11,7 +11,8 @@ namespace NooBIT.AspNetCore.Mvc.Http.Headers
         public static readonly string MustRevalidate = "must-revalidate";
         public static readonly string ProxyRevalidate = "proxy-revalidate";
 
-        [Experimental] [NonStandard] public static readonly string Immutable = "immutable";
+        [Experimental, NonStandard]
+        public static readonly string Immutable = "immutable";
 
         public static readonly string NoStore = "no-store";
         public static readonly string NoTransform = "no-transform";
@@ -23,9 +24,11 @@ namespace NooBIT.AspNetCore.Mvc.Http.Headers
         public static readonly string MaxStale = "max-stale{0}";
         public static readonly string MinFresh = "min-fresh={0}";
 
-        [Experimental] [NonStandard] public static readonly string StaleWhileRevalidate = "stale-while-revalidate={0}";
+        [Experimental, NonStandard]
+        public static readonly string StaleWhileRevalidate = "stale-while-revalidate={0}";
 
-        [Experimental] [NonStandard] public static readonly string StaleIfError = "stale-if-error={0}";
+        [Experimental, NonStandard]
+        public static readonly string StaleIfError = "stale-if-error={0}";
 
         internal CacheControlHeader() : base("Cache-Control")
         {

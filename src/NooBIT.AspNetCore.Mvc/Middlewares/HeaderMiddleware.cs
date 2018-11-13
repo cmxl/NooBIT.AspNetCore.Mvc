@@ -1,6 +1,6 @@
-﻿using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
 using NooBIT.AspNetCore.Mvc.Http;
+using System.Threading.Tasks;
 
 namespace NooBIT.AspNetCore.Mvc.Middlewares
 {

@@ -1,5 +1,5 @@
-﻿using System.Collections.Generic;
-using NooBIT.AspNetCore.Mvc.Http.Headers;
+﻿using NooBIT.AspNetCore.Mvc.Http.Headers;
+using System.Collections.Generic;
 
 namespace NooBIT.AspNetCore.Mvc.Http.Builders
 {
@@ -13,34 +13,19 @@ namespace NooBIT.AspNetCore.Mvc.Http.Builders
             header.Value = _values.Contains(ClearSiteDataHeader.All)
                 ? ClearSiteDataHeader.All
                 : string.Join(", ", _values);
-            
+
             return header;
         }
 
-        public IHeaderBuilder All()
-        {
-            return Add(ClearSiteDataHeader.All);
-        }
+        public IHeaderBuilder All() => Add(ClearSiteDataHeader.All);
 
-        public IHeaderBuilder Cache()
-        {
-            return Add(ClearSiteDataHeader.Cache);
-        }
+        public IHeaderBuilder Cache() => Add(ClearSiteDataHeader.Cache);
 
-        public IHeaderBuilder Cookies()
-        {
-            return Add(ClearSiteDataHeader.Cookies);
-        }
+        public IHeaderBuilder Cookies() => Add(ClearSiteDataHeader.Cookies);
 
-        public IHeaderBuilder Storage()
-        {
-            return Add(ClearSiteDataHeader.Storage);
-        }
+        public IHeaderBuilder Storage() => Add(ClearSiteDataHeader.Storage);
 
-        public IHeaderBuilder ExecutionContexts()
-        {
-            return Add(ClearSiteDataHeader.ExecutionContexts);
-        }
+        public IHeaderBuilder ExecutionContexts() => Add(ClearSiteDataHeader.ExecutionContexts);
 
         private IHeaderBuilder Add(string value)
         {

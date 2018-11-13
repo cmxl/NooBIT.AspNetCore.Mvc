@@ -1,5 +1,5 @@
-﻿using System;
-using NooBIT.AspNetCore.Mvc.Security.ContentSecurityPolicy.Sources;
+﻿using NooBIT.AspNetCore.Mvc.Security.ContentSecurityPolicy.Sources;
+using System;
 
 namespace NooBIT.AspNetCore.Mvc.Security.ContentSecurityPolicy.Directives
 {
@@ -11,15 +11,12 @@ namespace NooBIT.AspNetCore.Mvc.Security.ContentSecurityPolicy.Directives
 
         public override void AddSource(Source source)
         {
-            if(source is SandboxSource)
+            if (source is SandboxSource)
                 base.AddSource(source);
 
             throw new NotSupportedException();
         }
 
-        public void AddSandboxSource(SandboxSource source)
-        {
-            AddSource(source);
-        }
+        public void AddSandboxSource(SandboxSource source) => AddSource(source);
     }
 }

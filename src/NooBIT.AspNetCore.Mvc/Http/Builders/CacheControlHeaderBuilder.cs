@@ -1,5 +1,5 @@
-﻿using System.Collections.Generic;
-using NooBIT.AspNetCore.Mvc.Http.Headers;
+﻿using NooBIT.AspNetCore.Mvc.Http.Headers;
+using System.Collections.Generic;
 
 namespace NooBIT.AspNetCore.Mvc.Http.Builders
 {
@@ -14,80 +14,35 @@ namespace NooBIT.AspNetCore.Mvc.Http.Builders
             return header;
         }
 
-        public IHeaderBuilder Public()
-        {
-            return Add(CacheControlHeader.Public);
-        }
+        public IHeaderBuilder Public() => Add(CacheControlHeader.Public);
 
-        public IHeaderBuilder Private()
-        {
-            return Add(CacheControlHeader.Private);
-        }
+        public IHeaderBuilder Private() => Add(CacheControlHeader.Private);
 
-        public IHeaderBuilder NoCache()
-        {
-            return Add(CacheControlHeader.NoCache);
-        }
+        public IHeaderBuilder NoCache() => Add(CacheControlHeader.NoCache);
 
-        public IHeaderBuilder OnlyIfCached()
-        {
-            return Add(CacheControlHeader.OnlyIfCached);
-        }
+        public IHeaderBuilder OnlyIfCached() => Add(CacheControlHeader.OnlyIfCached);
 
-        public IHeaderBuilder MustRevalidate()
-        {
-            return Add(CacheControlHeader.MustRevalidate);
-        }
+        public IHeaderBuilder MustRevalidate() => Add(CacheControlHeader.MustRevalidate);
 
-        public IHeaderBuilder ProxyRevalidate()
-        {
-            return Add(CacheControlHeader.ProxyRevalidate);
-        }
+        public IHeaderBuilder ProxyRevalidate() => Add(CacheControlHeader.ProxyRevalidate);
 
-        public IHeaderBuilder Immutable()
-        {
-            return Add(CacheControlHeader.Immutable);
-        }
+        public IHeaderBuilder Immutable() => Add(CacheControlHeader.Immutable);
 
-        public IHeaderBuilder NoStore()
-        {
-            return Add(CacheControlHeader.NoStore);
-        }
+        public IHeaderBuilder NoStore() => Add(CacheControlHeader.NoStore);
 
-        public IHeaderBuilder NoTransform()
-        {
-            return Add(CacheControlHeader.NoTransform);
-        }
+        public IHeaderBuilder NoTransform() => Add(CacheControlHeader.NoTransform);
 
-        public IHeaderBuilder MaxAge(int seconds)
-        {
-            return Add(string.Format(CacheControlHeader.MaxAge, seconds));
-        }
+        public IHeaderBuilder MaxAge(int seconds) => Add(string.Format(CacheControlHeader.MaxAge, seconds));
 
-        public IHeaderBuilder SMaxAge(int seconds)
-        {
-            return Add(string.Format(CacheControlHeader.SMaxAge, seconds));
-        }
+        public IHeaderBuilder SMaxAge(int seconds) => Add(string.Format(CacheControlHeader.SMaxAge, seconds));
 
-        public IHeaderBuilder MaxStale(int? seconds)
-        {
-            return Add(string.Format(CacheControlHeader.MaxStale, seconds.HasValue ? seconds.Value.ToString() : ""));
-        }
+        public IHeaderBuilder MaxStale(int? seconds) => Add(string.Format(CacheControlHeader.MaxStale, seconds.HasValue ? seconds.Value.ToString() : ""));
 
-        public IHeaderBuilder MinFresh(int seconds)
-        {
-            return Add(string.Format(CacheControlHeader.MinFresh, seconds));
-        }
+        public IHeaderBuilder MinFresh(int seconds) => Add(string.Format(CacheControlHeader.MinFresh, seconds));
 
-        public IHeaderBuilder StaleWhileRevalidate(int seconds)
-        {
-            return Add(string.Format(CacheControlHeader.StaleWhileRevalidate, seconds));
-        }
+        public IHeaderBuilder StaleWhileRevalidate(int seconds) => Add(string.Format(CacheControlHeader.StaleWhileRevalidate, seconds));
 
-        public IHeaderBuilder StaleIfError(int seconds)
-        {
-            return Add(string.Format(CacheControlHeader.StaleIfError, seconds));
-        }
+        public IHeaderBuilder StaleIfError(int seconds) => Add(string.Format(CacheControlHeader.StaleIfError, seconds));
 
         private IHeaderBuilder Add(string value)
         {

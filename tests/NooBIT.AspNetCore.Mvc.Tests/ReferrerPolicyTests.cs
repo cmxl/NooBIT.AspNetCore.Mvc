@@ -10,28 +10,28 @@ namespace NooBIT.AspNetCore.Mvc.Tests
         public void Builder_Creates_Header_With_Correct_Value()
         {
             var builder = new ReferrerPolicyBuilder();
-            var header = builder.UseNoReferrer().Build();
+            var header = builder.NoReferrer().Build();
             Assert.Equal(ReferrerPolicyHeader.NoReferrer, header.Value);
 
-            header = builder.UseNoReferrerWhenDowngrade().Build();
+            header = builder.NoReferrerWhenDowngrade().Build();
             Assert.Equal(ReferrerPolicyHeader.NoReferrerWhenDowngrade, header.Value);
 
-            header = builder.UseOrigin().Build();
+            header = builder.Origin().Build();
             Assert.Equal(ReferrerPolicyHeader.Origin, header.Value);
 
-            header = builder.UseOriginWhenCrossOrigin().Build();
+            header = builder.OriginWhenCrossOrigin().Build();
             Assert.Equal(ReferrerPolicyHeader.OriginWhenCrossOrigin, header.Value);
 
-            header = builder.UseSameOrigin().Build();
+            header = builder.SameOrigin().Build();
             Assert.Equal(ReferrerPolicyHeader.SameOrigin, header.Value);
 
-            header = builder.UseStrictOrigin().Build();
+            header = builder.StrictOrigin().Build();
             Assert.Equal(ReferrerPolicyHeader.StrictOrigin, header.Value);
 
-            header = builder.UseStrictOriginWhenCrossOrigin().Build();
+            header = builder.StrictOriginWhenCrossOrigin().Build();
             Assert.Equal(ReferrerPolicyHeader.StrictOriginWhenCrossOrigin, header.Value);
 
-            header = builder.UseUnsafeUrl().Build();
+            header = builder.UnsafeUrl().Build();
             Assert.Equal(ReferrerPolicyHeader.UnsafeUrl, header.Value);
         }
     }

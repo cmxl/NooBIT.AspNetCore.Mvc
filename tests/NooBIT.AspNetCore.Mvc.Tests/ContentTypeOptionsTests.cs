@@ -1,6 +1,6 @@
-﻿using System.Linq;
-using NooBIT.AspNetCore.Mvc.Http;
+﻿using NooBIT.AspNetCore.Mvc.Http;
 using NooBIT.AspNetCore.Mvc.Http.Headers;
+using System.Linq;
 using Xunit;
 
 namespace NooBIT.AspNetCore.Mvc.Tests

@@ -1,5 +1,5 @@
-﻿using System;
-using NooBIT.AspNetCore.Mvc.Security.ContentSecurityPolicy.Sources;
+﻿using NooBIT.AspNetCore.Mvc.Security.ContentSecurityPolicy.Sources;
+using System;
 
 namespace NooBIT.AspNetCore.Mvc.Security.ContentSecurityPolicy.Directives
 {
@@ -7,16 +7,13 @@ namespace NooBIT.AspNetCore.Mvc.Security.ContentSecurityPolicy.Directives
     {
         public override void AddSource(Source source)
         {
-            if(source is ReferrerSource)
+            if (source is ReferrerSource)
                 base.AddSource(source);
 
             throw new NotSupportedException();
         }
 
-        public void AddReferrerSource(ReferrerSource source)
-        {
-            AddSource(source);
-        }
+        public void AddReferrerSource(ReferrerSource source) => AddSource(source);
 
         internal Referrer() : base("referrer")
         {

@@ -1,15 +1,15 @@
-﻿using System;
+﻿using NooBIT.AspNetCore.Mvc.Http;
+using System;
 using System.Text;
-using NooBIT.AspNetCore.Mvc.Http;
 
 namespace NooBIT.AspNetCore.Mvc.Security.StrictTransportSecurity
 {
     public class StrictTransportSecurityBuilder : IHeaderBuilder
     {
-        private const string MaxAgeDirectiveFormat = "max-age={0}";
-        private const string IncludeSubDomainsDirective = "; includeSubDomains";
-        private const string PreloadDirective = "; preload";
-        private static readonly TimeSpan MinimumPreloadMaxAge = TimeSpan.FromDays(126);
+        private const string _maxAgeDirectiveFormat = "max-age={0}";
+        private const string _includeSubDomainsDirective = "; includeSubDomains";
+        private const string _preloadDirective = "; preload";
+        private static readonly TimeSpan _minimumPreloadMaxAge = TimeSpan.FromDays(126);
 
         private uint _maxAge;
         private bool _includeSubDmonains;
@@ -35,20 +35,20 @@ namespace NooBIT.AspNetCore.Mvc.Security.StrictTransportSecurity
 
         public Header Build()
         {
-            if(_maxAge < MinimumPreloadMaxAge.TotalSeconds && _preload)
-                throw new InvalidOperationException($"In order to confirm HSTS preload list subscription expiry must be at least eighteen weeks ({MinimumPreloadMaxAge.TotalSeconds} seconds).");
+            if (_maxAge < _minimumPreloadMaxAge.TotalSeconds && _preload)
+                throw new InvalidOperationException($"In order to confirm HSTS preload list subscription expiry must be at least eighteen weeks ({_minimumPreloadMaxAge.TotalSeconds} seconds).");
 
-            if(_preload && !_includeSubDmonains)
+            if (_preload && !_includeSubDmonains)
                 throw new InvalidOperationException("In order to confirm HSTS preload list subscription subdomains must be included.");
 
             var sb = new StringBuilder();
-            sb.AppendFormat(MaxAgeDirectiveFormat, _maxAge);
+            sb.AppendFormat(_maxAgeDirectiveFormat, _maxAge);
 
             if (_includeSubDmonains)
-                sb.Append(IncludeSubDomainsDirective);
+                sb.Append(_includeSubDomainsDirective);
 
             if (_preload)
-                sb.Append(PreloadDirective);
+                sb.Append(_preloadDirective);
 
             var header = Header.StrictTransportSecurity;
             header.Value = sb.ToString();

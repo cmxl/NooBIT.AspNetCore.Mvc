@@ -1,7 +1,7 @@
-﻿using System;
+﻿using NooBIT.AspNetCore.Mvc.Security.ContentSecurityPolicy.Sources;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using NooBIT.AspNetCore.Mvc.Security.ContentSecurityPolicy.Sources;
 
 namespace NooBIT.AspNetCore.Mvc.Security.ContentSecurityPolicy.Directives
 {
@@ -36,25 +36,13 @@ namespace NooBIT.AspNetCore.Mvc.Security.ContentSecurityPolicy.Directives
         internal string Name { get; }
         internal HashSet<Source> Value { get; }
 
-        public void AddDataSource(string data)
-        {
-            AddSource(new DataSource(data));
-        }
+        public void AddDataSource(string data) => AddSource(new DataSource(data));
 
-        public void AddUriSource(string uri)
-        {
-            AddUriSource(new Uri(uri));
-        }
+        public void AddUriSource(string uri) => AddUriSource(new Uri(uri));
 
-        public void AddUriSource(Uri uri)
-        {
-            AddSource(new UriSource(uri));
-        }
+        public void AddUriSource(Uri uri) => AddSource(new UriSource(uri));
 
-        public void AddNonceSource(string nonceHash)
-        {
-            AddSource(new NonceSource(nonceHash));
-        }
+        public void AddNonceSource(string nonceHash) => AddSource(new NonceSource(nonceHash));
 
         public virtual void AddSource(Source source)
         {

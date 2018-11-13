@@ -5,50 +5,26 @@ namespace NooBIT.AspNetCore.Mvc.Security.XssProtection
 {
     public class XssProtectionBuilder : IHeaderBuilder
     {
-        private XssProtectionType _type = XssProtectionType.Block;
+        private readonly Header _header;
 
-        public XssProtectionBuilder Disable()
+        public XssProtectionBuilder()
         {
-            _type = XssProtectionType.Disable;
+            _header = Header.XssProtection;
+            _header.Value = XssProtectionHeader.Block;
+        }
+
+        public Header Build() => _header;
+
+        public XssProtectionBuilder Disable() => SetXssProtection(XssProtectionHeader.Disable);
+
+        public XssProtectionBuilder Enable() => SetXssProtection(XssProtectionHeader.Enable);
+
+        public XssProtectionBuilder Block() => SetXssProtection(XssProtectionHeader.Block);
+
+        private XssProtectionBuilder SetXssProtection(string value)
+        {
+            _header.Value = value;
             return this;
-        }
-
-        public XssProtectionBuilder Enable()
-        {
-            _type = XssProtectionType.Enable;
-            return this;
-        }
-
-        public XssProtectionBuilder Block()
-        {
-            _type = XssProtectionType.Block;
-            return this;
-        }
-
-        public Header Build()
-        {
-            var header = Header.XssProtection;
-            switch (_type)
-            {
-                case XssProtectionType.Disable:
-                    header.Value = XssProtectionHeader.Disable;
-                    break;
-                case XssProtectionType.Enable:
-                    header.Value =XssProtectionHeader.Enable;
-                    break;
-                default:
-                    header.Value = XssProtectionHeader.Block;
-                    break;
-            }
-
-            return header;
-        }
-
-        private enum XssProtectionType
-        {
-            Disable,
-            Enable,
-            Block
         }
     }
 }

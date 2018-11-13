@@ -24,9 +24,6 @@ namespace NooBIT.AspNetCore.Mvc.Http
         public string Name { get; }
         public string Value { get; set; }
 
-        public sealed override string ToString()
-        {
-            return Name + ": " + Value;
-        }
+        public sealed override string ToString() => Name + ": " + Value;
     }
 }

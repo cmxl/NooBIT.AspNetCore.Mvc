@@ -1,63 +1,37 @@
-﻿using System;
-using NooBIT.AspNetCore.Mvc.Http;
+﻿using NooBIT.AspNetCore.Mvc.Http;
 using NooBIT.AspNetCore.Mvc.Http.Headers;
+using System;
 
 namespace NooBIT.AspNetCore.Mvc.Security.FrameOptions
 {
     public class FrameOptionsBuilder : IHeaderBuilder
     {
-        private string _allowFromUrl;
+        private readonly Header _header;
 
-        private FrameOptionsType _type = FrameOptionsType.SameOrigin;
-
-
-        public Header Build()
+        public FrameOptionsBuilder()
         {
-            var header = Header.FrameOptions;
-
-            switch (_type)
-            {
-                case FrameOptionsType.Deny:
-                    header.Value = FrameOptionsHeader.Deny;
-                    break;
-                case FrameOptionsType.AllowFrom:
-                    header.Value = FrameOptionsHeader.AllowFrom + " " + _allowFromUrl;
-                    break;
-                default:
-                    header.Value = FrameOptionsHeader.SameOrigin;
-                    break;
-            }
-
-            return header;
+            _header = Header.FrameOptions;
+            _header.Value = FrameOptionsHeader.SameOrigin;
         }
 
-        public FrameOptionsBuilder UseDeny()
-        {
-            _type = FrameOptionsType.Deny;
-            return this;
-        }
+        public Header Build() => _header;
 
-        public FrameOptionsBuilder UseSameOrigin()
-        {
-            _type = FrameOptionsType.SameOrigin;
-            return this;
-        }
+        public FrameOptionsBuilder Deny() => SetFrameOptions(FrameOptionsHeader.Deny);
 
-        public FrameOptionsBuilder UseAllowFrom(string url)
+        public FrameOptionsBuilder SameOrigin() => SetFrameOptions(FrameOptionsHeader.SameOrigin);
+
+        public FrameOptionsBuilder AllowFrom(string url)
         {
             if (string.IsNullOrWhiteSpace(url))
                 throw new ArgumentNullException(nameof(url));
 
-            _type = FrameOptionsType.AllowFrom;
-            _allowFromUrl = url;
-            return this;
+            return SetFrameOptions(FrameOptionsHeader.AllowFrom + " " + url);
         }
 
-        private enum FrameOptionsType
+        private FrameOptionsBuilder SetFrameOptions(string value)
         {
-            Deny,
-            SameOrigin,
-            AllowFrom
+            _header.Value = value;
+            return this;
         }
     }
 }

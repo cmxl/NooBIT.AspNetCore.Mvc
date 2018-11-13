@@ -1,11 +1,11 @@
-﻿using System;
-using Microsoft.AspNetCore.Hosting;
+﻿using Microsoft.AspNetCore.Hosting;
 using NooBIT.AspNetCore.Mvc.Http.Headers;
 using NooBIT.AspNetCore.Mvc.Security.ContentSecurityPolicy;
 using NooBIT.AspNetCore.Mvc.Security.FrameOptions;
 using NooBIT.AspNetCore.Mvc.Security.ReferrerPolicy;
 using NooBIT.AspNetCore.Mvc.Security.StrictTransportSecurity;
 using NooBIT.AspNetCore.Mvc.Security.XssProtection;
+using System;
 
 namespace NooBIT.AspNetCore.Mvc.Http
 {
@@ -37,10 +37,7 @@ namespace NooBIT.AspNetCore.Mvc.Http
             return this;
         }
 
-        public HeaderPolicy Build()
-        {
-            return _policy;
-        }
+        public HeaderPolicy Build() => _policy;
 
         public HeaderPolicyBuilder AddRecommendedSecurityHeaders(IHostingEnvironment environment)
         {
@@ -52,14 +49,14 @@ namespace NooBIT.AspNetCore.Mvc.Http
                 .AddXssProtection(new XssProtectionBuilder()
                     .Block())
                 .AddFrameOptions(new FrameOptionsBuilder()
-                    .UseSameOrigin())
+                    .SameOrigin())
                 .AddReferrerPolicy(new ReferrerPolicyBuilder()
-                    .UseStrictOriginWhenCrossOrigin());
+                    .StrictOriginWhenCrossOrigin());
 
             if (!environment.IsDevelopment())
             {
                 AddStrictTransportSecurity(new StrictTransportSecurityBuilder()
-                    .UseMaxAge((uint) TimeSpan.FromDays(365).TotalSeconds)
+                    .UseMaxAge((uint)TimeSpan.FromDays(365).TotalSeconds)
                     .WithIncludeSubDomains()
                     .WithPreload());
             }
@@ -67,40 +64,19 @@ namespace NooBIT.AspNetCore.Mvc.Http
             return this;
         }
 
-        public HeaderPolicyBuilder RemoveServerHeader()
-        {
-            return RemoveHeader(Header.Server);
-        }
+        public HeaderPolicyBuilder RemoveServerHeader() => RemoveHeader(Header.Server);
 
-        public HeaderPolicyBuilder RemovePoweredByHeader()
-        {
-            return RemoveHeader(Header.PoweredBy);
-        }
+        public HeaderPolicyBuilder RemovePoweredByHeader() => RemoveHeader(Header.PoweredBy);
 
-        public HeaderPolicyBuilder AddStrictTransportSecurity(StrictTransportSecurityBuilder builder)
-        {
-            return AddHeader(builder);
-        }
+        public HeaderPolicyBuilder AddStrictTransportSecurity(StrictTransportSecurityBuilder builder) => AddHeader(builder);
 
-        public HeaderPolicyBuilder AddContentSecurity(ContentSecurityPolicyBuilder builder)
-        {
-            return AddHeader(builder);
-        }
+        public HeaderPolicyBuilder AddContentSecurity(ContentSecurityPolicyBuilder builder) => AddHeader(builder);
 
-        public HeaderPolicyBuilder AddXssProtection(XssProtectionBuilder builder)
-        {
-            return AddHeader(builder);
-        }
+        public HeaderPolicyBuilder AddXssProtection(XssProtectionBuilder builder) => AddHeader(builder);
 
-        public HeaderPolicyBuilder AddFrameOptions(FrameOptionsBuilder builder)
-        {
-            return AddHeader(builder);
-        }
+        public HeaderPolicyBuilder AddFrameOptions(FrameOptionsBuilder builder) => AddHeader(builder);
 
-        public HeaderPolicyBuilder AddReferrerPolicy(ReferrerPolicyBuilder builder)
-        {
-            return AddHeader(builder);
-        }
+        public HeaderPolicyBuilder AddReferrerPolicy(ReferrerPolicyBuilder builder) => AddHeader(builder);
 
         public HeaderPolicyBuilder AddContentTypeOptionsNoSniff()
         {

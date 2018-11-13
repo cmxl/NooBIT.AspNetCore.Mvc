@@ -19,7 +19,7 @@ namespace NooBIT.AspNetCore.Mvc.Tests
             Assert.Equal("X-Powered-By: ", Header.PoweredBy.ToString());
             Assert.Equal("X-XSS-Protection: ", Header.XssProtection.ToString());
 
-            Assert.Equal("X-Foo-Bar: my value", new Header("X-Foo-Bar"){Value = "my value"}.ToString());
+            Assert.Equal("X-Foo-Bar: my value", new Header("X-Foo-Bar") { Value = "my value" }.ToString());
         }
     }
 }

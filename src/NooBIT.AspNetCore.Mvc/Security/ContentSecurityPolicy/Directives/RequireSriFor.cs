@@ -1,5 +1,5 @@
-﻿using System;
-using NooBIT.AspNetCore.Mvc.Security.ContentSecurityPolicy.Sources;
+﻿using NooBIT.AspNetCore.Mvc.Security.ContentSecurityPolicy.Sources;
+using System;
 
 namespace NooBIT.AspNetCore.Mvc.Security.ContentSecurityPolicy.Directives
 {
@@ -13,10 +13,7 @@ namespace NooBIT.AspNetCore.Mvc.Security.ContentSecurityPolicy.Directives
             throw new NotSupportedException();
         }
 
-        public void AddRequireSriForSource(RequireSriForSource source)
-        {
-            AddSource(source);
-        }
+        public void AddRequireSriForSource(RequireSriForSource source) => AddSource(source);
 
         internal RequireSriFor() : base("require-sri-for")
         {
