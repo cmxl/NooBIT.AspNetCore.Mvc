@@ -12,10 +12,7 @@ namespace NooBIT.AspNetCore.Mvc.Builders
             return this;
         }
 
-        public Header Build()
-        {
-            return new MyCustomHeader(_value);
-        }
+        public Header Build() => new MyCustomHeader(_value);
     }
 
     public class MyCustomHeader : Header
