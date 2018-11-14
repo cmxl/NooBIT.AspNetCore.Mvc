@@ -50,6 +50,7 @@ namespace NooBIT.AspNetCore.Mvc.SimpleInjector
         public static IApplicationBuilder UseSimpleInjector(this IApplicationBuilder app, Container container, bool verify = true)
         {
             container.RegisterMvcControllers(app);
+            container.RegisterMvcViewComponents(app);
             container.AutoCrossWireAspNetComponents(app);
 
             if (verify)
