@@ -6,15 +6,14 @@ namespace NooBIT.AspNetCore.Mvc.Security.FrameOptions
 {
     public class FrameOptionsBuilder : IHeaderBuilder
     {
-        private readonly Header _header;
+        private string _value = FrameOptionsHeader.SameOrigin;
 
-        public FrameOptionsBuilder()
+        public Header Build()
         {
-            _header = Header.FrameOptions;
-            _header.Value = FrameOptionsHeader.SameOrigin;
+            var header = Header.FrameOptions;
+            header.Value = _value;
+            return header;
         }
-
-        public Header Build() => _header;
 
         public FrameOptionsBuilder Deny() => SetFrameOptions(FrameOptionsHeader.Deny);
 
@@ -30,7 +29,7 @@ namespace NooBIT.AspNetCore.Mvc.Security.FrameOptions
 
         private FrameOptionsBuilder SetFrameOptions(string value)
         {
-            _header.Value = value;
+            _value = value;
             return this;
         }
     }

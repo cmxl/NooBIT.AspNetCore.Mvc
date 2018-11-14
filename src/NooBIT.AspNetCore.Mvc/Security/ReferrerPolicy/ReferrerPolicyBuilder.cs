@@ -5,15 +5,14 @@ namespace NooBIT.AspNetCore.Mvc.Security.ReferrerPolicy
 {
     public class ReferrerPolicyBuilder : IHeaderBuilder
     {
-        private readonly Header _header;
+        private string _value = ReferrerPolicyHeader.StrictOriginWhenCrossOrigin;
 
-        public ReferrerPolicyBuilder()
+        public Header Build()
         {
-            _header = Header.ReferrerPolicy;
-            _header.Value = ReferrerPolicyHeader.StrictOriginWhenCrossOrigin;
+            var header = Header.ReferrerPolicy;
+            header.Value = _value;
+            return header;
         }
-
-        public Header Build() => _header;
 
         public ReferrerPolicyBuilder NoReferrer() => SetPolicy(ReferrerPolicyHeader.NoReferrer);
 
@@ -33,7 +32,7 @@ namespace NooBIT.AspNetCore.Mvc.Security.ReferrerPolicy
 
         private ReferrerPolicyBuilder SetPolicy(string value)
         {
-            _header.Value = value;
+            _value = value;
             return this;
         }
     }

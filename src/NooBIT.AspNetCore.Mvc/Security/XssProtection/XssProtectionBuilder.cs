@@ -5,15 +5,14 @@ namespace NooBIT.AspNetCore.Mvc.Security.XssProtection
 {
     public class XssProtectionBuilder : IHeaderBuilder
     {
-        private readonly Header _header;
+        private string _value = XssProtectionHeader.Block;
 
-        public XssProtectionBuilder()
+        public Header Build()
         {
-            _header = Header.XssProtection;
-            _header.Value = XssProtectionHeader.Block;
+            var header = Header.XssProtection;
+            header.Value = _value;
+            return header;
         }
-
-        public Header Build() => _header;
 
         public XssProtectionBuilder Disable() => SetXssProtection(XssProtectionHeader.Disable);
 
@@ -23,7 +22,7 @@ namespace NooBIT.AspNetCore.Mvc.Security.XssProtection
 
         private XssProtectionBuilder SetXssProtection(string value)
         {
-            _header.Value = value;
+            _value = value;
             return this;
         }
     }
