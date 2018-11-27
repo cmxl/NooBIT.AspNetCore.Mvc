@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using NooBIT.AspNetCore.Mvc.Middlewares;
+using System;
 
 namespace NooBIT.AspNetCore.Mvc.Optimization
 {
@@ -9,7 +10,7 @@ namespace NooBIT.AspNetCore.Mvc.Optimization
         public static IApplicationBuilder UseWebOptimizations(this IApplicationBuilder app, IWebOptimization webOptimization)
         {
             app.UseWebOptimizer(webOptimization.Environment);
-            app.UseStaticFilesWithCaching(webOptimization.CacheDuration);
+            app.UseStaticFilesWithCaching(TimeSpan.FromDays(365));
             app.UseResponseCaching();
             app.UseResponseCompression();
             return app;
