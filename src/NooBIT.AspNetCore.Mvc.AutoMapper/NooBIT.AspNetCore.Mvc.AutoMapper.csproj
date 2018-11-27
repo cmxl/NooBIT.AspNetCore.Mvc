@@ -8,7 +8,7 @@
     <RepositoryUrl>https://github.com/cmxl/NooBIT.AspNetCore.Mvc</RepositoryUrl>
     <PackageProjectUrl>https://github.com/cmxl/NooBIT.AspNetCore.Mvc</PackageProjectUrl>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <PackageLicenseUrl>https://github.com/cmxl/NooBIT.AspNetCore.Mvc/blob/master/LICENSE.md</PackageLicenseUrl>
+    <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
     <Company>noobit.org</Company>
     <PackageTags>netcore,asp,mvc,noobit,automapper</PackageTags>
   </PropertyGroup>
@@ -16,6 +16,9 @@
   <ItemGroup>
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="5.0.1" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="2.1.1" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="../../LICENSE.md" Pack="true" Visible="false" PackagePath="$(PackageLicenseFile)" />
   </ItemGroup>
 
 </Project>

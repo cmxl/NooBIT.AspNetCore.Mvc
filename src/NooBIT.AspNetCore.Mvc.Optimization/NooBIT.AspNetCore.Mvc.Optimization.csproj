@@ -8,7 +8,7 @@
     <RepositoryUrl>https://github.com/cmxl/NooBIT.AspNetCore.Mvc</RepositoryUrl>
     <PackageProjectUrl>https://github.com/cmxl/NooBIT.AspNetCore.Mvc</PackageProjectUrl>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <PackageLicenseUrl>https://github.com/cmxl/NooBIT.AspNetCore.Mvc/blob/master/LICENSE.md</PackageLicenseUrl>
+    <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
     <Company>noobit.org</Company>
     <PackageTags>netcore,asp,mvc,noobit</PackageTags>
   </PropertyGroup>
@@ -22,5 +22,9 @@
 
   <ItemGroup>
     <ProjectReference Include="..\NooBIT.AspNetCore.Mvc\NooBIT.AspNetCore.Mvc.csproj" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <None Include="../../LICENSE.md" Pack="true" Visible="false" PackagePath="$(PackageLicenseFile)" />
   </ItemGroup>
 </Project>
