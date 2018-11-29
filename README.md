@@ -8,7 +8,7 @@ Some useful ASP.NET Core performance and security extensions
 
 | Service | Status |
 | --- | --- |
-| AppVeyor | [![Build status](https://ci.appveyor.com/api/projects/status/jw2f5s8q57tlisgf/branch/master?svg=true)](https://ci.appveyor.com/project/cmxl/noobit-web/branch/master) |
+| AppVeyor | [![Build status](https://ci.appveyor.com/api/projects/status/3ubipwlaxdyaf9nm/branch/master?svg=true)](https://ci.appveyor.com/project/cmxl/noobit-aspnetcore-mvc/branch/master) |
 | SonarCloud | [![Maintainability](https://sonarcloud.io/api/project_badges/measure?project=NooBIT.AspNetCore.Mvc&metric=sqale_rating)](https://sonarcloud.io/dashboard?id=NooBIT.AspNetCore.Mvc) <br /> [![Maintainability](https://sonarcloud.io/api/project_badges/measure?project=NooBIT.AspNetCore.Mvc&metric=coverage)](https://sonarcloud.io/dashboard?id=NooBIT.AspNetCore.Mvc) |
 
 
