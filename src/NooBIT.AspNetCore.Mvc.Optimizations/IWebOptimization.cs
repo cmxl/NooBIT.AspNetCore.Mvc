@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.ResponseCaching;
 using Microsoft.AspNetCore.ResponseCompression;
 using WebOptimizer;
 
-namespace NooBIT.AspNetCore.Mvc.Optimization
+namespace NooBIT.AspNetCore.Mvc.Optimizations
 {
     public interface IWebOptimization
     {

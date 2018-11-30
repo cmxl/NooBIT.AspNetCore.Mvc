@@ -3,7 +3,7 @@ using Microsoft.Extensions.DependencyInjection;
 using NooBIT.AspNetCore.Mvc.Middlewares;
 using System;
 
-namespace NooBIT.AspNetCore.Mvc.Optimization
+namespace NooBIT.AspNetCore.Mvc.Optimizations
 {
     public static class MiddlewareExtensions
     {

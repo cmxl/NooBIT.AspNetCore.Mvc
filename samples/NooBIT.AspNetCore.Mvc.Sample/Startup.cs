@@ -7,7 +7,7 @@ using NooBIT.AspNetCore.Mvc.AutoMapper;
 using NooBIT.AspNetCore.Mvc.Builders;
 using NooBIT.AspNetCore.Mvc.Http;
 using NooBIT.AspNetCore.Mvc.Middlewares;
-using NooBIT.AspNetCore.Mvc.Optimization;
+using NooBIT.AspNetCore.Mvc.Optimizations;
 using NooBIT.AspNetCore.Mvc.SimpleInjector;
 using SimpleInjector;
 using System.IO;

@@ -19,7 +19,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\src\NooBIT.AspNetCore.Mvc.AutoMapper\NooBIT.AspNetCore.Mvc.AutoMapper.csproj" />
-    <ProjectReference Include="..\..\src\NooBIT.AspNetCore.Mvc.Optimization\NooBIT.AspNetCore.Mvc.Optimization.csproj" />
+    <ProjectReference Include="..\..\src\NooBIT.AspNetCore.Mvc.Optimizations\NooBIT.AspNetCore.Mvc.Optimizations.csproj" />
     <ProjectReference Include="..\..\src\NooBIT.AspNetCore.Mvc.SimpleInjector\NooBIT.AspNetCore.Mvc.SimpleInjector.csproj" />
     <ProjectReference Include="..\..\src\NooBIT.AspNetCore.Mvc\NooBIT.AspNetCore.Mvc.csproj" />
   </ItemGroup>

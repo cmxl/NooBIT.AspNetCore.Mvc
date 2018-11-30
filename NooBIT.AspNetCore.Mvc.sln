@@ -15,7 +15,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "samples", "samples", "{6244
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NooBIT.AspNetCore.Mvc.Sample", "samples\NooBIT.AspNetCore.Mvc.Sample\NooBIT.AspNetCore.Mvc.Sample.csproj", "{3BF2E7DC-17A5-4DCA-AC07-41137D0475D4}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NooBIT.AspNetCore.Mvc.Optimization", "src\NooBIT.AspNetCore.Mvc.Optimization\NooBIT.AspNetCore.Mvc.Optimization.csproj", "{B56C22F3-47DC-46EA-8F87-73AE2F8B8C43}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NooBIT.AspNetCore.Mvc.Optimizations", "src\NooBIT.AspNetCore.Mvc.Optimizations\NooBIT.AspNetCore.Mvc.Optimizations.csproj", "{B56C22F3-47DC-46EA-8F87-73AE2F8B8C43}"
 	ProjectSection(ProjectDependencies) = postProject
 		{2233CDDA-B741-4EB0-8849-44554D5F302E} = {2233CDDA-B741-4EB0-8849-44554D5F302E}
 	EndProjectSection
