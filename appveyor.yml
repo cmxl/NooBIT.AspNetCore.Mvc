@@ -1,4 +1,4 @@
-version: 2.1.4
+version: 2.1.5
 
 environment:
   sonar_project: "NooBIT.AspNetCore.Mvc"
@@ -41,7 +41,7 @@ build_script:
   - cmd: dotnet sonarscanner end /d:sonar.login="%sonar_token%"
   - cmd: dotnet nuget push artifacts\NooBIT.AspNetCore.Mvc.%APPVEYOR_BUILD_VERSION%.nupkg -k %nuget_token% -s https://www.nuget.org/api/v2/package
   - cmd: dotnet nuget push artifacts\NooBIT.AspNetCore.Mvc.AutoMapper.%APPVEYOR_BUILD_VERSION%.nupkg -k %nuget_token% -s https://www.nuget.org/api/v2/package
-  - cmd: dotnet nuget push artifacts\NooBIT.AspNetCore.Mvc.Optimizations.%APPVEYOR_BUILD_VERSION%.nupkg -k %nuget_token% -s https://www.nuget.org/api/v2/package
+  - cmd: dotnet nuget push artifacts\NooBIT.AspNetCore.Mvc.Optimization.%APPVEYOR_BUILD_VERSION%.nupkg -k %nuget_token% -s https://www.nuget.org/api/v2/package
   - cmd: dotnet nuget push artifacts\NooBIT.AspNetCore.Mvc.SimpleInjector.%APPVEYOR_BUILD_VERSION%.nupkg -k %nuget_token% -s https://www.nuget.org/api/v2/package
 
 test: off
