@@ -1,15 +1,16 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
-using NooBIT.AspNetCore.Mvc.AutoMapper;
 using NooBIT.AspNetCore.Mvc.Builders;
 using NooBIT.AspNetCore.Mvc.Http;
 using NooBIT.AspNetCore.Mvc.Middlewares;
 using NooBIT.AspNetCore.Mvc.Optimizations;
 using NooBIT.AspNetCore.Mvc.SimpleInjector;
 using SimpleInjector;
+using System;
 using System.IO;
 
 namespace NooBIT.AspNetCore.Mvc.Sample
@@ -45,14 +46,21 @@ namespace NooBIT.AspNetCore.Mvc.Sample
             services.AddMvc().AddFeatureFolders().SetCompatibilityVersion(CompatibilityVersion.Latest);
             services.AddRouting(options => options.LowercaseUrls = true); // lowercase urls just look better :p
             services.AddWebOptimizations(_webOptimizations); // style and script bundling options aswell as caching and compression can be configured via IWebOptimization interface
-            services.AddSimpleInjector(x => { /* register your stuff here. basic wiring of controllers and stuff is already done internally */ }, out _container);
-            services.AddAutoMapperWithValidation(typeof(Startup).Assembly); // after adding automapper lets also validate all configs!
+            services.AddSimpleInjector(x => { x.Register<IServiceProvider>(() => services.BuildServiceProvider()); /* register your stuff here. basic wiring of controllers and stuff is already done internally */ }, out _container);
+            services.AddAutoMapper(typeof(Startup).Assembly); // after adding automapper lets also validate all configs!
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment environment)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment environment, IMapper mapper)
         {
             app.UseSimpleInjector(_container);
+
+            if (environment.IsDevelopment())
+            {
+                _container.Verify();
+                mapper.ConfigurationProvider.AssertConfigurationIsValid();
+            }
+
             app.UseWebOptimizations(_webOptimizations); // style and script bundling options aswell as caching and compression can be configured via IWebOptimization interface
             app.UseForwardedHeaders(new ForwardedHeadersOptions { ForwardedHeaders = ForwardedHeaders.All }); // useful if behind a proxy e.g. nginx
             app.UseRecommendedSecurityHeaders(environment); // if development environment hsts is omitted!
