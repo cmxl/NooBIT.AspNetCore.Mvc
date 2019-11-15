@@ -40,7 +40,6 @@ build_script:
   - cmd: tools\OpenCover\OpenCover.Console.exe -target:"dotnet.exe" -targetargs:"test tests\NooBIT.AspNetCore.Mvc.Tests\NooBIT.AspNetCore.Mvc.Tests.csproj -c Release --no-build" -filter:"+[*]* -[*.Tests*]*" -oldStyle -register:user -output:"opencover.xml"
   - cmd: dotnet sonarscanner end /d:sonar.login="%sonar_token%"
   - cmd: dotnet nuget push artifacts\NooBIT.AspNetCore.Mvc.%APPVEYOR_BUILD_VERSION%.nupkg -k %nuget_token% -s https://www.nuget.org/api/v2/package
-  - cmd: dotnet nuget push artifacts\NooBIT.AspNetCore.Mvc.AutoMapper.%APPVEYOR_BUILD_VERSION%.nupkg -k %nuget_token% -s https://www.nuget.org/api/v2/package
   - cmd: dotnet nuget push artifacts\NooBIT.AspNetCore.Mvc.Optimizations.%APPVEYOR_BUILD_VERSION%.nupkg -k %nuget_token% -s https://www.nuget.org/api/v2/package
   - cmd: dotnet nuget push artifacts\NooBIT.AspNetCore.Mvc.SimpleInjector.%APPVEYOR_BUILD_VERSION%.nupkg -k %nuget_token% -s https://www.nuget.org/api/v2/package
 
