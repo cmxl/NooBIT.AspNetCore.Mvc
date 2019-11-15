@@ -17,7 +17,6 @@ Some useful ASP.NET Core performance and security extensions
 | Package | NuGet |
 | --- | --- |
 | NooBIT.AspNetCore.Mvc | [![NuGet](https://buildstats.info/nuget/NooBIT.AspNetCore.Mvc)](https://www.nuget.org/packages/NooBIT.AspNetCore.Mvc) |
-| NooBIT.AspNetCore.Mvc.AutoMapper | [![NuGet](https://buildstats.info/nuget/NooBIT.AspNetCore.Mvc.AutoMapper)](https://www.nuget.org/packages/NooBIT.AspNetCore.Mvc.AutoMapper) |
 | NooBIT.AspNetCore.Mvc.Optimizations | [![NuGet](https://buildstats.info/nuget/NooBIT.AspNetCore.Mvc.Optimizations)](https://www.nuget.org/packages/NooBIT.AspNetCore.Mvc.Optimizations) |
 | NooBIT.AspNetCore.Mvc.SimpleInjector | [![NuGet](https://buildstats.info/nuget/NooBIT.AspNetCore.Mvc.SimpleInjector)](https://www.nuget.org/packages/NooBIT.AspNetCore.Mvc.SimpleInjector) |
 
@@ -77,19 +76,6 @@ public class WebOptimization : IWebOptimization
     public virtual void ConfigureCaching(ResponseCachingOptions options)
     {
     }
-}
-```
-
-### AutoMapper
-
-An easy extension for AutoMapper to validate all mappings after adding the service.
-
-```csharp
-public static IServiceCollection AddAutoMapperWithValidation(this IServiceCollection services, params Assembly[] assemblies)
-{
-    services.AddAutoMapper(assemblies);
-    Mapper.AssertConfigurationIsValid();
-    return services;
 }
 ```
 
