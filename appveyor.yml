@@ -6,7 +6,7 @@ environment:
   sonar_token:
     secure: iWa2RuCudhm1QFn1k/Vu/pSi6wnMNuLmcZnXCP3sOMqKRB779uylQN9b1NQpcmRA
   nuget_token:
-      secure: QFivkZaNTwhBMw4M4ERmtvPs49spWkN+dyAoYjRTHTMUSprfDmYdOzcb7XPECGI4
+      secure: p8KUnSJfhKR3eFAhXJhstsGPwckT8t6Rpd2hzhlb+YFK9ld8i/c+QhWLLiVNTEDq
 
 branches:
   only:
