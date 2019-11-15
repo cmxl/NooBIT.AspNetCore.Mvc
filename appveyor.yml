@@ -34,7 +34,7 @@ matrix:
 build_script:
   - cmd: dotnet tool install --global dotnet-sonarscanner
   - cmd: dotnet restore
-  - cmd: dotnet sonarscanner begin /k:%sonar_project% /d:sonar.organization=%sonar_organization% /d:sonar.host.url="https://sonarcloud.io" /d:sonar.login="%sonar_token%" /d:sonar.cs.opencover.reportsPaths="%CD%\opencover.xml"
+  - cmd: dotnet sonarscanner begin /k:%sonar_project% /o:%sonar_organization% /d:sonar.host.url="https://sonarcloud.io" /d:sonar.login="%sonar_token%" /d:sonar.cs.opencover.reportsPaths="%CD%\opencover.xml"
   - cmd: dotnet build NooBIT.AspNetCore.Mvc.sln -c Release /p:DebugType=Full
   - cmd: dotnet pack -c Release --no-build --include-symbols -o ..\..\artifacts /p:PackageVersion=%APPVEYOR_BUILD_VERSION%
   - cmd: tools\OpenCover\OpenCover.Console.exe -target:"dotnet.exe" -targetargs:"test tests\NooBIT.AspNetCore.Mvc.Tests\NooBIT.AspNetCore.Mvc.Tests.csproj -c Release --no-build" -filter:"+[*]* -[*.Tests*]*" -oldStyle -register:user -output:"opencover.xml"
